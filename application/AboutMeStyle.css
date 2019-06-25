@@ -1,16 +1,16 @@
 
-body {background: #F1F1F1 !important;}
-.about-title {}
-  .about-title h1 {color: #535353; font-size:45px;font-weight:600;}
-  .about-title span {color: #AF0808; font-size:45px;font-weight:700;}
-.about-para p {color: #7a7a7a;line-height: 1.8;margin: 0 0 15px;}
-.about-para {padding-bottom: 12px;}
+body {background: #171717 !important;}
+
+   h1 {color: #535353; font-size:45px;font-weight:600;}
+   span {color: #AF0808; font-size:45px;font-weight:700;}
+ p {color: #ffffff;line-height: 1.8;margin: 0 0 15px;}
+ {padding-bottom: 12px;}
 
 /* Social Icons */
 
-#social-gh:hover {color: #B5998;transition:all .001s;}
+#social-gh:hover {color: #4099FF;transition:all .001s;}
  #social-li:hover {color: #4099FF;transition:all .001s;}
- #social-fb:hover {color: #d486;transition:all .001s;}
- #social-em:hover {color: #f9c12;transition:all .001s;}
+ #social-fb:hover {color: #4099FF;transition:all .001s;}
+ #social-em:hover {color: #4099FF;transition:all .001s;}
 
- .footer {position: fixed;left: 0;bottom: 0;width: 100%;background-color: Black;color: white;text-align: center; }
+ .footer {position: fixed;left: 0;bottom: 0;width: 100%;background-color: white;color: black;text-align: center; }
