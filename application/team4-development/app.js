@@ -19,6 +19,6 @@ app.get('/', (request, response) => {
         response.sendFile('/views/Home.html', { root: __dirname })
     })
 
-app.listen(8080, () => {
-    console.log("Server is up and listening on 8080...")
+app.listen(80, () => {
+    console.log("Server is up and listening on 80...")
 })
