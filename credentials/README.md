@@ -7,10 +7,10 @@
 1. Server URL: ec2-18-216-80-193.us-east-2.compute.amazonaws.com
 2. SSH username: ubuntu
 3. SSH key: 648_Key.pem
-4. Database IP and port: 0.0.0.0 | 3306
-5. Database username: ubuntu
-6. Database password: csc648
-7. Database name: 648_db
+4. Database URL and port: csc648.crgiewgyesqb.us-east-2.rds.amazonaws.com | 3306
+5. Database username: admin
+6. Database password: csc648_team4
+7. Database name: csc648_db
 
 
 # How to Log Into the Server
