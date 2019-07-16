@@ -9,9 +9,9 @@ const db = require('../config/db.conf.js');
 
 //create router
 const router = express.Router()
- 
 
-//to check for empty object on error handling 
+
+//to check for empty object on error handling
 Object.prototype.isEmpty = function() {
     for (var key in this) {
         if (this.hasOwnProperty(key))
