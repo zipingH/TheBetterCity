@@ -1,0 +1,21 @@
+<h1>Testing page</h1>
+<form action="/search" method="post">
+Search :
+<input type="text" name="search" value=""> <br><br>
+<button type="submit" name="Search">Search</button>
+</form>
+
+<table id="table">
+    <tr>
+        <th>
+            Parks
+        </th>
+    </tr>
+        {{#parks}}
+    <tr>
+        <td>
+            {{name}}
+        </td>
+    </tr>
+      {{/parks}}
+</table>

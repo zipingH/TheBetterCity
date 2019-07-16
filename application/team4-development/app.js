@@ -1,23 +1,23 @@
 //load our app server using express
 const express = require('express')
-var cors = require('cors')
 const app = express()
-const morgan = require('morgan')
+var exphbs  = require('express-handlebars');
 
-const bodyParser = require('body-parser')
-
-app.use(cors())
-
-app.use(bodyParser.urlencoded({ extended: false }))
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 //important.. this line creates a connection to use static files such as html saved in the
-//folder public
+//folder views
 app.use(express.static('./views'))
-app.use(morgan('short'))
 
 app.get('/', (request, response) => {
         response.sendFile('/views/Home.html', { root: __dirname })
     })
+    
+//create connection to get issue
+const getIssue = require('./routes/getIssue.js')
+app.use(getIssue);
+
 
 app.listen(80, () => {
     console.log("Server is up and listening on 80...")
