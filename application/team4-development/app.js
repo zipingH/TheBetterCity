@@ -11,11 +11,6 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const app = express();
 
-//important.. this line creates a connection to use static files such as html saved in the
-//folder views
-
-//set views file
-
 //set view engine
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
