@@ -30,7 +30,7 @@ db.query(queryString, [category_id], (err, results)=>{
             err
         });
     } else {
-        res.send(results)
+        res.render('Test',{ 'parks': results });
     }
 
 })
@@ -48,7 +48,7 @@ router.get('/getAllCategory', (req, res) =>{
                 err
             });
         } else {
-            res.send(results)
+            res.render('Test',{ 'parks': results });
         }
     })
     })
@@ -66,7 +66,7 @@ router.get('/getPercentLike', (req, res) =>{
             });
         }
         else{
-            res.send(results);
+            res.render('Test',{ 'parks': results });
         }
     })
 })
