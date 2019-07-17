@@ -23,6 +23,7 @@
    <table class="table table-bordered">
   <thead>
     <tr>
+      <th scope="col">ID</th>
       <th scope="col">Title</th>
       <th scope="col">Photo</th>
       <th scope="col">Location</th>
@@ -31,6 +32,9 @@
   </thead>
          {{#each parks}}
     <tr scope="row">
+        <td>
+            {{id}}
+        </td>
         <td>
             {{title}}
         </td>
