@@ -22,7 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //set public folder as static folder for static file
 app.use('/assets',express.static(__dirname + '/public'));
-app.use(express.static('./views'))
+app.use(express.static('./views'));
+app.use(express.static('public'));
 
 
 app.get('/',(req, res) => {

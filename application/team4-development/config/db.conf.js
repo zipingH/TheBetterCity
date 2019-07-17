@@ -13,8 +13,12 @@ const db = mysql.createConnection({
 
 //check if database is connected
 db.connect((err)=>{
-    if(err) throw err;
+    if(err){
+        throw err;
+    } 
+    else{
     console.log('Database Connected!');
+    }
 })
 
 
