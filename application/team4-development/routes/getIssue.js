@@ -22,7 +22,7 @@ Object.prototype.isEmpty = function() {
 
 //route for getting a category by id
 router.get('/getCategory', (req, res) =>{
-const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp FROM issue WHERE issue.category_id = ?;"
+const queryString = "SELECT * FROM issue WHERE issue.category_id = ?;"
 const category_id = req.query.category_id
 db.query(queryString, [category_id], (err, results)=>{
     if (err) {
@@ -38,9 +38,7 @@ db.query(queryString, [category_id], (err, results)=>{
 
 //route for getting all issue
 router.get('/getAllCategory', (req, res) =>{
-    const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp\
-    FROM issue\
-    where ?=?;"
+    const queryString = "SELECT * FROM issue where ?=?;"
     var whereAll = 1;
     db.query(queryString,[whereAll,whereAll], (err, results)=>{
         if (err) {
@@ -54,10 +52,8 @@ router.get('/getAllCategory', (req, res) =>{
     })
 
 //route using percent like to search issue where park is in the title
-router.get('/getPercentLike', (req, res) =>{
-    const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp \
-    FROM issue\
-    where title like concat('%', 'park' , '%') OR title = ?;"
+router.get('/search', (req, res) =>{
+    const queryString = "SELECT * FROM issue WHERE title LIKE concat('%', ? ,'%');"
     const title = req.query.title
     db.query(queryString,[title],(err, results)=>{
         if(err) {
