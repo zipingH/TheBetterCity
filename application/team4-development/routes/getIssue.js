@@ -22,11 +22,9 @@ Object.prototype.isEmpty = function() {
 
 //route for getting a category by id
 router.get('/getCategory', (req, res) =>{
-const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp \
-FROM issue , category\
-WHERE issue.category_id = ? AND category.category_id = ?;"
+const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp FROM issue WHERE issue.category_id = ?;"
 const category_id = req.query.category_id
-db.query(queryString, [category_id, category_id], (err, results)=>{
+db.query(queryString, [category_id], (err, results)=>{
     if (err) {
         return res.status(400).send({
             err
@@ -63,8 +61,9 @@ router.get('/getPercentLike', (req, res) =>{
     const title = req.query.title
     db.query(queryString,[title],(err, results)=>{
         if(err) {
-            throw err;
-            console.log(results);
+            return res.status(400).send({
+                err
+            });
         }
         else{
             res.send(results);
