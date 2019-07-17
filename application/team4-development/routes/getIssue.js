@@ -59,8 +59,9 @@ router.get('/getAllCategory', (req, res) =>{
 router.get('/getPercentLike', (req, res) =>{
     const queryString = "SELECT issue.id, issue.title, issue.photo, issue.location, issue.description, issue.time_stamp \
     FROM issue\
-    where title like '%park%';"
-    db.query(queryString,(err, results)=>{
+    where title like concat('%', 'park' , '%') OR title = ?;"
+    const title = req.query.title
+    db.query(queryString,[title],(err, results)=>{
         if(err) {
             throw err;
             console.log(results);
