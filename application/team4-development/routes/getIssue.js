@@ -22,8 +22,8 @@ Object.prototype.isEmpty = function() {
 
 //route for getting a category by category_id
 router.get('/getCategory', (req, res) =>{
-const queryString = "SELECT * FROM issue WHERE issue.category_id = ?;"
-const queryAll = "SELECT * FROM issue WHERE ?=?;"
+const queryString = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+const queryAll = "SELECT * FROM issue, status, category WHERE ?=? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
 const category_id = req.query.category_id
 if(category_id != 0){
     db.query(queryString, [category_id], (err, results)=>{
@@ -51,7 +51,7 @@ else{
 
 //route using percent like to search issue where park is in the title
 router.get('/search', (req, res) =>{
-    const queryString = "SELECT * FROM issue WHERE title LIKE concat('%', ? ,'%');"
+    const queryString = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
     const title = req.query.title
     db.query(queryString,[title],(err, results)=>{
         if(err) {

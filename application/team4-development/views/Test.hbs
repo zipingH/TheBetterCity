@@ -12,12 +12,12 @@
   <div class="col-sm-3">
      <div class="input-group input-group-lg">
    <form action="/search" method="get">
-     <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
+     <input id="search" type ="text" name="title"+"location" placeholder="search by title, location..." class="form-control">
      <br>
           <button class="btn btn-default" type="submit">Search</button>
    </form>
 
-   <form id="tableForm" action="/getCategory" method="get">
+   <form id="tableForm" action="/getCategory" method="get" >
     <select class="selectpicker" data-style="btn-info" name="category_id">
         <optgroup label="Select Category">
             <option name="All" value="0">All</option>
@@ -37,17 +37,20 @@
    <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">ID</th>
+      <th scope="col">Issue_id</th>
       <th scope="col">Title</th>
       <th scope="col">Photo</th>
       <th scope="col">Location</th>
       <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Status</th>
+
     </tr>
   </thead>
          {{#each parks}}
     <tr scope="row">
         <td>
-            {{id}}
+            {{issue_id}}
         </td>
         <td>
             {{title}}
@@ -60,6 +63,12 @@
         </td>
         <td>
             {{description}}
+        </td>
+        <td>
+            {{category}}
+        </td>
+         <td>
+            {{status}}
         </td>
     </tr>
     {{else}}
