@@ -2,22 +2,63 @@
 <head>
     <meta charset="utf-8">
     <title>Vertical prototype testing</title>
-  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+    form.search input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 90%;
+      background: #f1f1f1;
+    }
+
+    form.search button {
+      float: left;
+      width: 10%;
+      padding: 8px;
+      background: #e6ebef;
+      color: black;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none;
+      cursor: pointer;
+    }
+
+    form.search button:hover {
+      background: #0b7dda;
+    }
+
+    form.search::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    </style>
+
 </head>
 <body>
 
-  <h1>Testing page</h1>
-  <div class=row>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-3">
-     <div class="input-group input-group-lg">
-   <form action="/search" method="get">
-     <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
-     <br>
-          <button class="btn btn-default" type="submit">Search</button>
-   </form>
 
-   <form id="tableForm" action="/getCategory" method="get" >
+  <div class="page-header">
+    <h2 class="text-center">Team 04</h2>
+
+  <p class="text-center">CSC648-848 Summer 2019 Vertical Prototype test page </p>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-2">
+   <form id="tableForm" class =filter action="/getCategory" method="get" >
     <select class="selectpicker" data-style="btn-info" name="category_id">
         <optgroup label="Select Category">
             <option name="All" value="0">All</option>
@@ -31,8 +72,22 @@
     <input type="submit" />
 </form>
 
+</div>
+
+<div class="col-sm-6">
+<form class= search action="/search" method="get">
+  <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
+        <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
    </div>
+
+   <div class="col-sm-2"></div>
  </div>
+
+
+ <div class="row">
+   <div class="col-sm-2"></div>
  <div class="col-sm-8">
    <table class="table table-bordered">
   <thead>
