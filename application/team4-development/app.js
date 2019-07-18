@@ -25,7 +25,6 @@ app.get('/',(req, res) => {
       res.render('Test');
   });
 
-
 //create connection to get issue
 const getIssue = require('./routes/getIssue.js')
 app.use(getIssue);

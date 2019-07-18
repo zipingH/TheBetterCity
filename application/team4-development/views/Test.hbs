@@ -53,7 +53,11 @@
             {{title}}
         </td>
         <td>
+          {{#if photo}}
           <img src = "{{photo}}" width="150" height="150">
+          {{else}}
+          <img src="../IssueImages/no-image.jpg" width="150" height="150">
+          {{/if}}
         </td>
         <td>
             {{location}}
