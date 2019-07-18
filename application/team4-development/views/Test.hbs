@@ -78,7 +78,11 @@
             {{title}}
         </td>
         <td>
+          if({{photo != ''}})
           <img src = "{{photo}}" width="150" height="150">
+          else
+          <p>No Photo</p>
+
         </td>
         <td>
             {{location}}
