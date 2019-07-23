@@ -1,110 +1,116 @@
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Vertical prototype testing</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/testStyle.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <title>Vertical prototype testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/testStyle.css" rel="stylesheet" />
 
 </head>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".selectpicker").val(new URLSearchParams(window.location.search).get('category_id'));
+  });
+</script>
 <body>
 
 
   <div class="page-header">
     <h2 class="text-center">Team 04</h2>
 
-  <p class="text-center">CSC648-848 Summer 2019 Vertical Prototype test page </p>
-</div>
+    <p class="text-center">CSC648-848 Summer 2019 Vertical Prototype test page </p>
+  </div>
 
 
 
 
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-2">
-   <form id="tableForm" class =filter action="/getCategory" method="get" >
-    <select class="selectpicker" data-style="btn-info" name="category_id">
-        <optgroup label="Select Category">
-            <option name="All" value="0">All</option>
-            <option name="Litter" value="1">Litter</option>
-            <option name="Water Polution" value="2">Water Polution</option>
-            <option name="Bio-Hazards" value="3">Bio-Hazards</option>
-            <option name="Broken City Property" value="4">Broken City Property</option>
-            <option name="Other" value="5">Other</option>
-        </optgroup>
-    </select>
-    <input type="submit" />
-</form>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+      <form id="tableForm" class=filter action="/getCategory" method="get">
+        <select class="selectpicker" data-style="btn-info" name="category_id">
+          <optgroup label="Select Category">
+              <option name="All" value="0">All</option>
+              <option name="Litter" value="1">Litter</option>
+              <option name="Water Polution" value="2">Water Polution</option>
+              <option name="Bio-Hazards" value="3">Bio-Hazards</option>
+              <option name="Broken City Property" value="4">Broken City Property</option>
+              <option name="Other" value="5">Other</option>
+          </optgroup>
+        </select>
+        <input type="submit" />
+      </form>
 
-</div>
+    </div>
 
-<div class="col-sm-6">
-<form class= search action="/search" method="get">
-  <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
+    <div class="col-sm-6">
+      <form class=search action="/search" method="get">
+        <input id="search" type="text" name="title" placeholder="search by title..." class="form-control" value="{{filter}}">
         <button type="submit"><i class="fa fa-search"></i></button>
-</form>
+      </form>
 
-   </div>
+    </div>
 
-   <div class="col-sm-2"></div>
- </div>
+    <div class="col-sm-2"></div>
+  </div>
 
 
- <div class="row">
-   <div class="col-sm-2"></div>
- <div class="col-sm-8">
-   <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Issue_id</th>
-      <th scope="col">Title</th>
-      <th scope="col">Photo</th>
-      <th scope="col">Location</th>
-      <th scope="col">Description</th>
-      <th scope="col">Category</th>
-      <th scope="col">Status</th>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Issue_id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Location</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
 
-    </tr>
-  </thead>
-         {{#each parks}}
-    <tr scope="row">
-        <td>
-            {{issue_id}}
-        </td>
-        <td>
-            {{title}}
-        </td>
-        <td>
-          {{#if photo }}
-              <a target="_blank" href="{{photo}}">
-                  <img src = "{{photo}}" width="150" height="150">
+          </tr>
+        </thead>
+        {{#each parks}}
+          <tr scope="row">
+            <td>
+              {{issue_id}}
+            </td>
+            <td>
+              {{title}}
+            </td>
+            <td>
+              {{#if photo }}
+                <img src="{{photo}}" width="150" height="150">
 
-          {{else}}
-              <p>No Photo</p>
-  {{/if}}
+              {{else}}
+                <p>No Photo</p>
+              {{/if}}
 
-        </td>
-        <td>
-            {{location}}
-        </td>
-        <td>
-            {{description}}
-        </td>
-        <td>
-            {{category}}
-        </td>
-         <td>
-            {{status}}
-        </td>
-    </tr>
-    {{else}}
-      {{/each}}
-</table>
+            </td>
+            <td>
+              {{location}}
+            </td>
+            <td>
+              {{description}}
+            </td>
+            <td>
+              {{category}}
+            </td>
+            <td>
+              {{status}}
+            </td>
+          </tr>
+        {{else}}
+        {{/each}}
+      </table>
 
- </div>
-</div>
+    </div>
+  </div>
 </body>
+
 </html>
