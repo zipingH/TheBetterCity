@@ -21,7 +21,7 @@ Object.prototype.isEmpty = function() {
 }
 
 //route for getting a filter and search
-router.get('/dropdown?', (req, res) =>{
+router.get('/dropdown', (req, res) =>{
   console.log(req.query)
   console.log("inside filter dropdown:--");
       console.log('filter:' + req.query.category_id);
