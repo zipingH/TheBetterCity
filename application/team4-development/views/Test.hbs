@@ -11,26 +11,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/testStyle.css" rel="stylesheet" />
 
-<script type="text/javascript">
-    $(function () {
+    <script type="text/javascript">
+        $(function () {
 
-    $("#btn").click(function () {
+        $("#btn").click(function () {
 
-         var item =  $("#filter option:selected").text();
+             var item =  $("#filter option:selected").text();
 
-          sessionStorage.setItem("sele", item);
-          });
+              sessionStorage.setItem("sele", item);
+              });
 
-          var ty = sessionStorage.getItem("sele");
+              var ty = sessionStorage.getItem("sele");
 
-          if(ty){
-            //Set the value of select from sessionStorage
-                $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
-           }
-        });
+              if(ty){
+                //Set the value of select from sessionStorage
+                    $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
+               }
+            });
 
-        </script>
-
+            </script>
 </head>
 <body>
 
@@ -85,7 +84,12 @@
 
     </tr>
   </thead>
+
+{{#if parks }}
+  <p>{{parks.length}} results found: </p>
+
          {{#each parks}}
+
     <tr scope="row">
         <td>
             {{issue_id}}
@@ -118,6 +122,13 @@
     </tr>
     {{else}}
       {{/each}}
+
+      {{else}}
+          <p>Invalid search,try new search keyword</p>
+
+          {{/if}}
+
+
 </table>
 
  </div>
