@@ -21,15 +21,18 @@ app.use(express.static('./views'));
 app.use(express.static('public'));
 
 
-app.get('/',(req, res) => {
-      res.render('Test');
-  });
+// app.get('/',(req, res) => {
+//       res.render('Test');
+//   });
 
 
 //create connection to get issue
-const getIssue = require('./routes/getIssue.js')
+const getIssue = require('./routes/getIssue.js');
 app.use(getIssue);
 
+//create connection to main
+const main = require('./routes/main.js');
+app.use(main);
 
 app.listen(80, () => {
     console.log("Server is up and listening on 80...")
