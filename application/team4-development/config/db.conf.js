@@ -9,13 +9,14 @@ const db = mysql.createConnection({
     user: 'admin',
     password: 'csc648_team4',
     database: 'csc648_db',
+    multipleStatements: true
 });
 
 //check if database is connected
 db.connect((err)=>{
     if(err){
         throw err;
-    } 
+    }
     else{
     console.log('Database Connected!');
     }

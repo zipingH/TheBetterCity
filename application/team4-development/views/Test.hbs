@@ -6,9 +6,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://github.com/yckart/jquery.storage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/testStyle.css" rel="stylesheet" />
 
+    <script type="text/javascript">
+        $(function () {
+
+        $("#btn").click(function () {
+
+             var item =  $("#filter option:selected").text();
+
+              sessionStorage.setItem("sele", item);
+              });
+
+              var ty = sessionStorage.getItem("sele");
+
+              if(ty){
+                //Set the value of select from sessionStorage
+                    $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
+               }
+            });
+
+            </script>
 </head>
 <body>
 
@@ -24,9 +45,9 @@
 
 <div class="row">
   <div class="col-sm-2"></div>
-  <div class="col-sm-2">
-   <form id="tableForm" class =filter action="/getCategory" method="get" >
-    <select class="selectpicker" data-style="btn-info" name="category_id">
+  <div class="col-sm-8">
+   <form id="tableForm" class =filter action="/dropdown" method="get" >
+    <select class="selectpicker" data-style="btn-info" name="category_id" id="filter">
         <optgroup label="Select Category">
             <option name="All" value="0">All</option>
             <option name="Litter" value="1">Litter</option>
@@ -36,25 +57,19 @@
             <option name="Other" value="5">Other</option>
         </optgroup>
     </select>
-    <input type="submit" />
+    <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
+          <button type="submit" id="btn"><i class="fa fa-search"></i></button>
+
 </form>
 
 </div>
-
-<div class="col-sm-6">
-<form class= search action="/search" method="get">
-  <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
-        <button type="submit"><i class="fa fa-search"></i></button>
-</form>
-
-   </div>
-
-   <div class="col-sm-2"></div>
- </div>
+<div class="col-sm-2"></div>
+</div>
 
 
  <div class="row">
    <div class="col-sm-2"></div>
+
  <div class="col-sm-8">
    <table class="table table-bordered">
   <thead>
@@ -69,7 +84,12 @@
 
     </tr>
   </thead>
+
+{{#if parks }}
+  <p>{{parks.length}} results found: </p>
+
          {{#each parks}}
+
     <tr scope="row">
         <td>
             {{issue_id}}
@@ -102,9 +122,20 @@
     </tr>
     {{else}}
       {{/each}}
+
+      {{else}}
+          <p>Invalid search,try a different category or search keyword</p>
+
+          {{/if}}
+
+
 </table>
 
  </div>
+ <div class="col-sm-2"></div>
 </div>
+
+
+
 </body>
 </html>
