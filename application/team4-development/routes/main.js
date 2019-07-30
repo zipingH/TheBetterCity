@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', (req, res) =>{
   console.log("--Inside Main--");
-  res.sendFile(path.resolve('views/Home.html'));
+  res.render('Home');
 });
 
 module.exports = router;
