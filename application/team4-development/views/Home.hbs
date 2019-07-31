@@ -19,6 +19,7 @@
   <!-- main css -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pagination.css">
   <!-- js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -26,107 +27,10 @@
    <script src="https://github.com/yckart/jquery.storage.js"></script>
   <script type="text/javascript" src="js/sessionStorage.js"></script>
   <script type="text/javascript" src="js/filterOption.js"></script>
+    <script type="text/javascript" src="js/pagination.js"></script>
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 </head>
-
-<script type="text/javascript" >
-$(document).ready(function() {
-	var currentPage = 1;
-	var pageSize = 10;
-	var total = 135;
-	var totalsize = 1;
-
-	$(function() {
-	   sufa();
-	})
-
-	$(".layui-box").delegate(".pageNumber","click",function () {
-		var no =  parseInt($(this).attr("data"));
-		currentPage = no;
-		sufa();
-	})
-
-    $(".pageSizeSelect").on('change',function(){
-		pageSize = parseInt($(this).find("option:selected").val());
-		currentPage = 1;
-		sufa();
-    })
-
-	$(".layui-laypage-first").on('click',function(){
-		if(currentPage != 1) {
-			currentPage = 1;
-		    sufa();
-		}
-    })
-
-	$(".layui-laypage-pre").on('click',function(){
-		if(currentPage != 1) {
-			currentPage = currentPage-1;
-		    sufa();
-		}
-    })
-
-	$(".layui-laypage-next").on('click',function(){
-		if(currentPage != totalsize) {
-			currentPage = currentPage+1;
-		    sufa();
-		}
-    })
-
-	$(".layui-laypage-last").on('click',function(){
-		if(currentPage != totalsize) {
-			currentPage = totalsize;
-		    sufa();
-		}
-    })
-
-	function sufa() {
-		var aa = [];
-		aa.push(currentPage);
-		totalsize =  Math.ceil(total/pageSize);
-		for(var i=1 ;i<5;i++) {
-			var a= currentPage+i;
-			var b= currentPage-i;
-			if(aa.length < 5) {
-				if(a<=totalsize) aa.push(a);
-				if(b>0) aa.push(b);
-			}
-		}
-		aa.sort(function compare(val1,val2){return val1-val2;});
-
-		var content = "";
-		for(var i=0 ;i<aa.length;i++) {
-			if(aa[i] == currentPage) {
-				content += "<a class=\"pageNumber aaa\" href='#' data='"+aa[i]+"'>"+aa[i]+"</a>";
-			}else {
-				content += "<a class=\"pageNumber\" href='#' data='"+aa[i]+"'>"+aa[i]+"</a>";
-			}
-		}
-        $(".pageNumber").remove();
-		$(".layui-laypage-pre").after(content);
-	}
-})
-</script>
-
-
-<!--DynamicPagetion Style.CSS-->
-<style>
-	.layui-box a {
-		padding: 5px 10px;
-		text-decoration-line:none;
-		background-color: #f4f4f5;
-		margin-left: 5px;
-		color: #606266;
-		border-radius: 2px;
-	}
-
-	.layui-box  .aaa {
-		background-color: #58C7C7;
-		color: #fff;
-	}
-</style>
-
 <body>
 
   <!--================ Start header Top Area =================-->

@@ -1,0 +1,16 @@
+/* DynamicPagetion Style.CSS  */
+
+
+	.layui-box a {
+		padding: 5px 10px;
+		text-decoration-line:none;
+		background-color: #f4f4f5;
+		margin-left: 5px;
+		color: #606266;
+		border-radius: 2px;
+	}
+
+	.layui-box  .aaa {
+		background-color: #58C7C7;
+		color: #fff;
+	}
