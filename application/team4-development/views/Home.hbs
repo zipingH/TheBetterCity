@@ -11,38 +11,112 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/themify-icons.css">
   <link rel="stylesheet" href="css/flaticon.css">
+
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/animate-css/animate.css">
   <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
   <!-- main css -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-<!-- js -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
- <script src="https://github.com/yckart/jquery.storage.js"></script>
-  <script type="text/javascript">
-         $(function () {
-
-         $("#searchBtn").click(function () {
-
-              var filterSel =  $("#filter option:selected").text();
-
-               sessionStorage.setItem("sele", filterSel);
-               });
-
-               var ty = sessionStorage.getItem("sele");
-
-               if(ty){
-                 //Set the value of select from sessionStorage
-                     $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
-                }
-             });
-
-             </script>
 </head>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var currentPage = 1;
+	var pageSize = 10;
+	var total = 135;
+	var totalsize = 1;
+
+	$(function() {
+	   sufa();
+	})
+
+	$(".layui-box").delegate(".pageNumber","click",function () {
+		var no =  parseInt($(this).attr("data"));
+		currentPage = no;
+		sufa();
+	})
+
+    $(".pageSizeSelect").on('change',function(){
+		pageSize = parseInt($(this).find("option:selected").val());
+		currentPage = 1;
+		sufa();
+    })
+
+	$(".layui-laypage-first").on('click',function(){
+		if(currentPage != 1) {
+			currentPage = 1;
+		    sufa();
+		}
+    })
+
+	$(".layui-laypage-pre").on('click',function(){
+		if(currentPage != 1) {
+			currentPage = currentPage-1;
+		    sufa();
+		}
+    })
+
+	$(".layui-laypage-next").on('click',function(){
+		if(currentPage != totalsize) {
+			currentPage = currentPage+1;
+		    sufa();
+		}
+    })
+
+	$(".layui-laypage-last").on('click',function(){
+		if(currentPage != totalsize) {
+			currentPage = totalsize;
+		    sufa();
+		}
+    })
+
+	function sufa() {
+		var aa = [];
+		aa.push(currentPage);
+		totalsize =  Math.ceil(total/pageSize);
+		for(var i=1 ;i<5;i++) {
+			var a= currentPage+i;
+			var b= currentPage-i;
+			if(aa.length < 5) {
+				if(a<=totalsize) aa.push(a);
+				if(b>0) aa.push(b);
+			}
+		}
+		aa.sort(function compare(val1,val2){return val1-val2;});
+
+		var content = "";
+		for(var i=0 ;i<aa.length;i++) {
+			if(aa[i] == currentPage) {
+				content += "<a class=\"pageNumber aaa\" href='#' data='"+aa[i]+"'>"+aa[i]+"</a>";
+			}else {
+				content += "<a class=\"pageNumber\" href='#' data='"+aa[i]+"'>"+aa[i]+"</a>";
+			}
+		}
+        $(".pageNumber").remove();
+		$(".layui-laypage-pre").after(content);
+	}
+})
+</script>
+
+
+<!--DynamicPagetion Style.CSS-->
+<style>
+	.layui-box a {
+		padding: 5px 10px;
+		text-decoration-line:none;
+		background-color: #f4f4f5;
+		margin-left: 5px;
+		color: #606266;
+		border-radius: 2px;
+	}
+
+	.layui-box  .aaa {
+		background-color: #58C7C7;
+		color: #fff;
+	}
+</style>
 
 <body>
 
@@ -67,7 +141,6 @@
           </div>
         </div>
       </div>
-       <h6 >We help you check the environmental issues and connect to the right authority in reporting them. Together, our passion for nature can make a difference in preserving our green space! </h6>
     </div>
 
   </section>
@@ -96,14 +169,6 @@
       </nav>
     </div>
   </header>
-
-  <!-- Title of page -->
-  <section class="d-flex justify-content-center">
-    <h3>Search Page</h3>
-  </section>
-
-<!-- Filter and Search -->
-
   <section>
     <div class="container">
       <div class="row">
@@ -111,7 +176,7 @@
           <div class="col-sm-12 d-flex justify-content-center">
             <select class="form-control" data-style="btn-info" name="category_id" id="filter">
               <optgroup label="Select Category">
-                <option name="All" value="0">All</option>
+                <option name="All" value="0">Category</option>
                 <option name="Litter" value="1">Litter</option>
                 <option name="Water Polution" value="2">Water Polution</option>
                 <option name="Bio-Hazards" value="3">Bio-Hazards</option>
@@ -120,20 +185,21 @@
               </optgroup>
             </select>
             <input id="search" type="text" name="title" placeholder="search by title..." class="form-control w-75" value="">
-            <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
+            <button type="submit" class="form-control"><i class="fa fa-search"></i></button>
           </div>
         </form>
       </div>
     </div>
   </section>
+  <!-- Title of page -->
+  <section class="d-flex justify-content-center">
+    <h3>Search Page</h3>
+  </section>
 
-
-  <!-- Search Result list -->
+  <!-- Issues list -->
   <section style="min-height:50%">
 
     {{#if parks }}
-    <div class="container">
-<p class = "text-center" >{{parks.length}} results found: </p>
 
       {{#each parks}}
         <div class="container">
@@ -170,15 +236,28 @@
     {{else}}
     <section>
       <div class="h-50 d-flex justify-content-center align-items-center">
-          <h6>No records found for current search, try a different category or search keyword</h6>
+        <h6>No search results.</h6>
       </div>
     </section>
 
     {{/if}}
   </section>
-  <section>
 
-  </section>
+
+
+
+ <!-- body of Dynamicpagetion -->
+ <div class="layui-box layui-laypage layui-laypage-molv" id="layui-laypage-1" style="margin-top: 10px; margin-left:375px; center;font-size: 14px">
+
+
+   <a href="javascript:" class="layui-laypage-first" data-page="0">First Page</a>
+   <a href="javascript:" class="layui-laypage-pre" data-page="2">Previous</a>
+   <a href="javascript:" class="layui-laypage-next" data-page="2">Next</a>
+   <a href="javascript:" class="layui-laypage-last" data-page="2">Last Page</a>
+
+ </div>
+
+
 
   <footer class="footer-area p-0">
     <div class="container">
