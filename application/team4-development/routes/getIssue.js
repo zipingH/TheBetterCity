@@ -20,49 +20,63 @@ Object.prototype.isEmpty = function() {
     return true;
 }
 
-//route for getting a category by category_id
-router.get('/getCategory', (req, res) =>{
-const queryString = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
-const queryAll = "SELECT * FROM issue, status, category WHERE ?=? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+//route for getting a filter and search
+router.get('/dropdown', (req, res) =>{
+
 const category_id = req.query.category_id
-if(category_id != 0){
-    db.query(queryString, [category_id], (err, results)=>{
+const title = req.query.title
+const status_id = req.query.status_id
+  console.log(req.query)
+  console.log("inside filter dropdown:--");
+  console.log('filter:' + req.query.category_id + ' ' + status_id);
+  console.log('search:' + req.query.title);
+        //const percent = req.query.title
+    //    console.log('title'+ @title);
+
+  const query_percentLikeByTitle="SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+//const queryFilter = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+//const querySearch = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+//const queryString = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+//const queryString2= "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id INTERSECT SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+const query_selectAll = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+const query_selectStatus = "SELECT * FROM issue, status, category WHERE  issue.status_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+if(category_id == 0){
+  db.query(query_selectAll,[title], (err, results)=>{
         if (err) {
             return res.status(400).send({
                 err
             });
         } else {
-            res.render('Test',{ 'parks': results });
+            res.render('Home',{ 'parks': results });
         }
     })
 }
-else{
-    db.query(queryAll, [category_id,category_id], (err, results)=>{
+
+else if(category_id > 0 || category_id < 6) {
+  db.query(query_percentLikeByTitle,[category_id,title],(err, results)=>{
         if (err) {
             return res.status(400).send({
                 err
             });
         } else {
-            res.render('Test',{ 'parks': results });
+            res.render('Home',{ 'parks': results });
+        }
+    })
+}
+
+// dropdown menu route to select status if category_id is not in the database
+else{
+    db.query(query_selectStatus,[status_id,title],(err, results)=>{
+        if (err) {
+            return res.status(400).send({
+                err
+            });
+        } else {
+            res.render('Home',{ 'parks': results });
         }
     })
 }
 })
 
-//route using percent like to search issue where park is in the title
-router.get('/search', (req, res) =>{
-    const queryString = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
-    const title = req.query.title
-    db.query(queryString,[title],(err, results)=>{
-        if(err) {
-            return res.status(400).send({
-                err
-            });
-        }
-        else{
-            res.render('Test',{ 'parks': results });
-        }
-    })
-})
 
 module.exports = router
