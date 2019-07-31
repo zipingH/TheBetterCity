@@ -16,6 +16,6 @@ $(function () {
               if(ty){
                 //Set the value of select from sessionStorage
                     $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
-                    $("#search").attr({"placeholder" : ty2});
+                    $("#search").attr({"value" : ty2});
                }
             });

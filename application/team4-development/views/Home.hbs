@@ -158,11 +158,13 @@
       {{/each}}
 
     {{else}}
-    <section>
-      <div class="h-50 d-flex justify-content-center align-items-center">
-        <h6>No records found for current search, try a different category or search keyword</h6>
-      </div>
-    </section>
+    {{#equal parks.length 0 }}
+  <section>
+    <div class="h-50 d-flex justify-content-center align-items-center">
+      <h6>No records found for current search, try a different category or search keyword</h6>
+    </div>
+  </section>
+{{/equal}}
 
     {{/if}}
   </section>

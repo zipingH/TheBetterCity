@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 //use hbs view engine
 const hbs = require('hbs');
+hbs.registerHelper("equal", require("handlebars-helper-equal"));
 //use bodyParser middleware
 const bodyParser = require('body-parser');
 //use mysql database
