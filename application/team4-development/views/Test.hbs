@@ -30,6 +30,17 @@
             });
 
             </script>
+
+<script type="text/javascript">
+$(function () {
+  $("#searchBtn").click(function(){
+var filterSel =  $("#filter option:selected").val();
+if (filterSel > 5)
+$("#filter").attr({"name" : "status_id"});
+  });
+});
+</script>
+            
 </head>
 <body>
 
@@ -39,9 +50,6 @@
 
   <p class="text-center">CSC648-848 Summer 2019 Vertical Prototype test page </p>
 </div>
-
-
-
 
 <div class="row">
   <div class="col-sm-2"></div>
@@ -55,6 +63,12 @@
             <option name="Bio-Hazards" value="3">Bio-Hazards</option>
             <option name="Broken City Property" value="4">Broken City Property</option>
             <option name="Other" value="5">Other</option>
+        </optgroup>
+        <optgroup label="Select Status">
+          <option name="All" value="0"> All</option>
+          <option name="Open" value="6"> Open </option>
+          <option name="Work in Progress" value="7"> Work in Progress </option>
+          <option name="Resolved" value="8"> Resolved </option>
         </optgroup>
     </select>
     <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
