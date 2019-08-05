@@ -1,8 +1,8 @@
 //  Contact.html
 //  CSC648-su19-Team04
 // The Better City
-//
 //  Created by Ryan on 7/28/19.
+// Edited by Maithri, Ziping, Ryan, Aashutosh, Fengze, Soham, Bahar, Patrick
 //  Copyright © CSC-648/848 Team 04. All rights reserved.
 
 <html lang="en">
@@ -29,11 +29,11 @@
   <!-- js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-   <script src="https://github.com/yckart/jquery.storage.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://github.com/yckart/jquery.storage.js"></script>
   <script type="text/javascript" src="js/sessionStorage.js"></script>
   <script type="text/javascript" src="js/filterOption.js"></script>
-    <script type="text/javascript" src="js/pagination.js"></script>
+  <script type="text/javascript" src="js/pagination.js"></script>
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 </head>
@@ -91,16 +91,16 @@
   </header>
 
   <!-- Title of page -->
-<section class="d-flex justify-content-center">
-  <h3>Contact Us</h3>
-</section>
+  <section class="d-flex justify-content-center">
+    <h3>Contact Us</h3>
+  </section>
 
-<!-- Contact Us section -->
-<section>
-  <div class="container w-50">
-    <div class="row">
-      <div class="col-sm-6">
-        <form class="form">
+  <!-- Contact Us section -->
+  <section>
+    <div class="container w-50">
+      <div class="row">
+        <div class="col-sm-6">
+          <form class="form">
             <div class="form-group">
               <label for="title">Name <font color="red">*</font></label>
               <input type="text" class="form-control" required>
@@ -118,20 +118,20 @@
               <label for="description">Message <font color="red">*</font></label>
               <textarea class="form-control" rows="3" required></textarea>
             </div>
-          <div class="form-group">
-            <input type="submit" value="Send Message" class="btn btn-primary" />
-          </div>
-        </form>
-      </div>
-      <div class="col-sm-6">
-        <div id="Layer1" class="w-100 h-100" style="margin-left:50%">
-          <img src="./img/contactus.png"/>
+            <div class="form-group">
+              <input type="submit" value="Send Message" class="btn btn-primary" />
+            </div>
+          </form>
         </div>
-      </div>
+        <div class="col-sm-6">
+          <div id="Layer1" class="w-100 h-100" style="margin-left:50%">
+            <img src="./img/contactus.png"/>
+          </div>
+        </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <footer class="footer-area p-0">
     <div class="container">
@@ -140,109 +140,109 @@
           Copyright &copy; CSC-648/848 Team 04
         </div>
       </div>
-  </footer>
+    </footer>
 
 
-  <!-- Login Modal -->
-  <div class=" modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Log In</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <!-- Login Modal -->
+    <div class=" modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">Log In</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="login-input">
+              <div class="form-group">
+
+                <input id="username" type="email" class="form-control" placeholder="Email *" name="email" required>
+              </div>
+              <div class="form-group">
+
+                <input id="password" type="password" class="form-control" placeholder="Password *" name="password" required>
+              </div>
+            </form>
+            <button class="btn login-form__btn submit w-100" id="login_submit">Log In</button>
+            <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
+            <p class="mt-1 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
+          </div>
+
         </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
-
-              <input id="username" type="email" class="form-control" placeholder="Email *" name="email" required>
-            </div>
-            <div class="form-group">
-
-              <input id="password" type="password" class="form-control" placeholder="Password *" name="password" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Log In</button>
-          <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
-          <p class="mt-1 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
-        </div>
-
       </div>
     </div>
-  </div>
 
-  <!-- Reset Password Modal -->
-  <div class=" modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Reset/Forgot Password ?</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
-              <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Reset Password</button>
-        </div>
+    <!-- Reset Password Modal -->
+    <div class=" modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">Reset/Forgot Password ?</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="login-input">
+              <div class="form-group">
+                <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
+              </div>
+            </form>
+            <button class="btn login-form__btn submit w-100" id="login_submit">Reset Password</button>
+          </div>
 
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- SignUp Modal -->
-  <div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Sign Up</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input" action="/register" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" name="Name" placeholder="Name *" required>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" name="Email" placeholder="Email *" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password" placeholder="Password *" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
-            </div>
-            <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
-          </form>
-        </div>
+    <!-- SignUp Modal -->
+    <div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">Sign Up</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="login-input" action="/register" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" name="Name" placeholder="Name *" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="Email" placeholder="Email *" required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="Password" placeholder="Password *" required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
+              </div>
+              <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
+            </form>
+          </div>
 
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <!-- End header MEnu Area -->
-  <script src="js/jquery-2.2.4.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/stellar.js"></script>
-  <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/theme.js"></script>
-</body>
+    <!-- End header MEnu Area -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/theme.js"></script>
+  </body>
 
-</html>
+  </html>
