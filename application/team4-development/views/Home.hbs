@@ -140,7 +140,7 @@
                 <option name="In Progress" value="7">In Progress</option>
                 <option name="Resolved" value="8">Resolved</option>
             </select>
-            <input id="search" type="text" name="title" placeholder="search by title..." maxlength="45" pattern="^[a-zA-Z.-]*"  oninvalid="setCustomValidity('Please enter only Alphabets ')"
+            <input id="search" type="text" name="title" placeholder="search by title..." maxlength="45" pattern="^[a-zA-Z\s]*"  oninvalid="setCustomValidity('Please enter only Alphabets ')"
     onchange="try{setCustomValidity('')}catch(e){}" class="form-control w-75" value="">
             <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
           </div>
