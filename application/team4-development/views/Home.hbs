@@ -1,9 +1,10 @@
-//  Contact.html
+
+<!--Home.hbs
 //  CSC648-su19-Team04
-// The Better City
-//  Created by Ryan on 7/28/19.
-// Edited by Maithri,Ziping, Ryan, Aashutosh, Fengze, Soham, Bahar, Patrick
+//  The Better City
+//  Created by Soham on 7/28/19.
 //  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
 
 <html lang="en">
 
@@ -18,7 +19,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/themify-icons.css">
   <link rel="stylesheet" href="css/flaticon.css">
-
+  <link rel="stylesheet" href="css/Thumbnail.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/animate-css/animate.css">
   <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
@@ -170,12 +171,39 @@
                       <li class="list-inline-item">
                         <h6>Status: <b>{{status}}</b></h6>
                       </li>
+
+                      <!-- <li class="list-inline-item">
+                        <h6>Status: <b>{{photo}}</b></h6>
+                      </li> -->
+                      <!-- this is the id for the photo-->
+
                     </ul>
                     <h6 class="card-title">Description</h6>
                     <p class="card-text">{{description}}</p>
+
+                    <li class="list-inline-item">
+                    <h6>Photo:
+
+                      <div class="image-size">
+                      <img id="myImg" src="img/flood.jpg" alt="Snow" style=weight>
+                       <!-- <img id="myImg" src="{{description}}" alt="Snow" style=weight> -->
+                      </div>
+                      <!-- The Modal -->
+                      <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                      </div>
+                    </h6>
+
+<!--thumbnail body-->
+
+                    </li>
                     {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
                     <a href="ShowDetailPage.html" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+
                   </div>
+
                 </div>
               </div>
               <div class="col-sm-1">
@@ -347,6 +375,31 @@
   <script src="js/jquery.validate.min.js"></script>
   <script src="js/mail-script.js"></script>
   <script src="js/theme.js"></script>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+
 </body>
 
 </html>
