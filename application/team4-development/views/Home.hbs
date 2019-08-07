@@ -39,19 +39,10 @@
 
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-144899618-1');
-  </script>
-
-
+  <script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
+     <!-- google recaptcha-->
+   
 </head>
 
 <body>
@@ -309,6 +300,14 @@
             <div class="form-group">
               <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
             </div>
+            <div class="form-group">
+              <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required>
+              <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+            </div>
+            <form action="?" method="POST">
+      <div class="g-reCAPTCHA" data-sitekey="6LcYurEUAAAAABcvdwc1FGn3WXDp9PXlPz78sIER"></div>
+      <br/>
+      <input type="submit" value="Submit">
             <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
           </form>
         </div>
