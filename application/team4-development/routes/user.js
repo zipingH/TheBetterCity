@@ -45,4 +45,38 @@ router.post('/login' , (req, res) =>{
 })
 
 
-module.exports = router;
+//route for login
+router.post('/reset' , (req, res) =>{
+  res.render('Home');
+});
+
+  //route for signup/register
+  router.post('/register' , (req, res) =>{
+
+    console.log("inside register");
+    console.log('name:' + req.body.name);
+    console.log('email:' +req.body.email);
+
+    const queryString = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+
+    db.query(queryString, [req.body.name, req.body.email, req.body.password], (err, results) => {
+      if (err) {
+          return res.status(400).send({
+              err
+          });
+      } else {
+          res.render('Home');
+      }
+  })
+})
+
+  //route for logout
+  router.post('/logout' , (req, res) =>{
+    req.session.destroy(function() {
+        console.log("user logged out.")
+    });
+    res.render('Home');
+  });
+
+
+module.exports = router
