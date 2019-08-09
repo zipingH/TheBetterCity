@@ -6,6 +6,7 @@
 //  Copyright © CSC-648/848 Team 04. All rights reserved.
 -->
 
+
 <html lang="en">
 
 <head>
@@ -57,69 +58,40 @@
 
 <body>
 
-  <!--================ Start header Top Area =================-->
-  <section class="header-top">
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="float-left">
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 logo-wrapper">
-          <a href="index.html" class="logo">
-            <img src="img/logo.png" alt="">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 search-trigger">
-          <div class="right-button">
-            <ul>
-              <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-12">
-          <h6>We help you check the environmental issues and connect to the right authority in reporting them. Together, our passion for nature can make a difference in preserving our green space! </h6>
-        </div>
-      </div>
-    </div>
+  {{> header}}
 
-  </section>
-  <!--================ End header top Area =================-->
+
 
   <!-- Start header Menu Area -->
-  <header id="header" class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="SubmitIssue.html">Submit Issues</a></li>
-              <li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li>
-              <li class="nav-item"><a class="nav-link" href="Contact.html">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+ <header id="header" class="header_area">
+   <div class="main_menu">
+     <nav class="navbar navbar-expand-lg navbar-light">
+       <div class="container">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <!-- Collect the nav links, forms, and other content for toggling -->
+         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+           <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+             <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+             <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+             <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
+             <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+           </ul>
+         </div>
+       </div>
+     </nav>
+   </div>
+ </header>
 
-  <!-- Title of page -->
-  <section class="d-flex justify-content-center">
-    <h3>Search Page</h3>
-  </section>
+ <!-- Title of page -->
+ <section class="d-flex justify-content-center">
+   <h3>Search Page</h3>
+ </section>
 
-  <!-- Search and Filter area -->
+ <!-- Search and Filter area -->
   <section>
     <div class="container">
       <div class="row">
@@ -140,8 +112,7 @@
                 <option name="In Progress" value="7">In Progress</option>
                 <option name="Resolved" value="8">Resolved</option>
             </select>
-            <input id="search" type="text" name="title" placeholder="search by title..." maxlength="50" pattern="^[0-9a-zA-Z\s]*"  oninvalid="setCustomValidity('Please enter alphanumeric charecters only ')"
-    onchange="try{setCustomValidity('')}catch(e){}" class="form-control w-75" value="">
+            <input id="search" type="text" name="title" placeholder="search by title..." class="form-control w-75" value="">
             <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
           </div>
         </form>
@@ -181,39 +152,12 @@
                       <li class="list-inline-item">
                         <h6>Status: <b>{{status}}</b></h6>
                       </li>
-
-                      <!-- <li class="list-inline-item">
-                        <h6>Status: <b>{{photo}}</b></h6>
-                      </li> -->
-                      <!-- this is the id for the photo-->
-
                     </ul>
                     <h6 class="card-title">Description</h6>
                     <p class="card-text">{{description}}</p>
-
-                    <li class="list-inline-item">
-                    <h6>Photo:
-
-                      <div class="image-size">
-                      <img id="myImg" src="img/flood.jpg" alt="Snow" style=weight>
-                       <!-- <img id="myImg" src="{{description}}" alt="Snow" style=weight> -->
-                      </div>
-                      <!-- The Modal -->
-                      <div id="myModal" class="modal">
-                        <span class="close">&times;</span>
-                        <img class="modal-content" id="img01">
-                        <div id="caption"></div>
-                      </div>
-                    </h6>
-
-<!--thumbnail body-->
-
-                    </li>
                     {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
-                    <a href="ShowDetailPage.html" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
-
+                    <a href="/showDetail" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
                   </div>
-
                 </div>
               </div>
               <div class="col-sm-1">
@@ -236,115 +180,25 @@
     {{/if}}
   </section>
 
-  <!-- Pagination -->
-  <section>
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="layui-box layui-laypage layui-laypage-molv" id="layui-laypage-1" >
-          <a href="javascript:" class="layui-laypage-first" data-page="0">First Page</a>
-          <a href="javascript:" class="layui-laypage-pre" data-page="2">Previous</a>
-          <a href="javascript:" class="layui-laypage-next" data-page="2">Next</a>
-          <a href="javascript:" class="layui-laypage-last" data-page="2">Last Page</a>
+    <!-- Pagination -->
+    <section>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="layui-box layui-laypage layui-laypage-molv" id="layui-laypage-1" >
+            <a href="javascript:" class="layui-laypage-first" data-page="0">First Page</a>
+            <a href="javascript:" class="layui-laypage-pre" data-page="2">Previous</a>
+            <a href="javascript:" class="layui-laypage-next" data-page="2">Next</a>
+            <a href="javascript:" class="layui-laypage-last" data-page="2">Last Page</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer-area p-0">
-    <div class="container">
-      <div class="row">
-        <div class="footer-bottom align-items-center text-center w-100">
-          Copyright &copy; CSC-648/848 Team 04
-        </div>
-      </div>
-  </footer>
+  {{> footer}}
 
 
-  <!-- Login Modal -->
-  <div class=" modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Log In</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
 
-              <input id="username" type="email" class="form-control" placeholder="Email *" name="email" required>
-            </div>
-            <div class="form-group">
 
-              <input id="password" type="password" class="form-control" placeholder="Password *" name="password" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Log In</button>
-          <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
-          <p class="mt-1 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Reset Password Modal -->
-  <div class=" modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Reset/Forgot Password ?</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
-              <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Reset Password</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- SignUp Modal -->
-  <div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Sign Up</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input" action="/register" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" name="Name" placeholder="Name *" maxlength="50" pattern="^[a-zA-Z.-]*" required>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" name="Email" placeholder="Email *" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password" placeholder="Password *" minlength="8" maxlength="32" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
-            </div>
-            <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   <!-- Show Details Popup -->
   <div class=" modal fade" id="showDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -14,6 +14,9 @@ const app = express();
 
 //set view engine
 app.set('view engine', 'hbs');
+
+//load all hbs partials
+hbs.registerPartials(__dirname + '/views/partials');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //set public folder as static folder for static file
