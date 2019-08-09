@@ -34,6 +34,10 @@ app.use(express.static('public'));
 const getIssue = require('./routes/getIssue.js');
 app.use(getIssue);
 
+//create connection to post issue
+const postIssue = require('./routes/postIssue.js');
+app.use(postIssue);
+
 //create connection to main
 const main = require('./routes/main.js');
 app.use(main);
