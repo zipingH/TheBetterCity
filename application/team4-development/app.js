@@ -38,10 +38,13 @@ app.use(express.static('public'));
 
 //initialize sessions
 app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
+    //key: 'user_sid',
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+
 }));
+
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 

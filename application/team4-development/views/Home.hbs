@@ -50,14 +50,32 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-144899618-1');
+
   </script>
+
+
+  <script>
+            var loggedInId = '';
+            var loggedInName = '';
+            $(document).ready(function() {
+                loggedInId = '{{session.user.id}}';
+                loggedInName = '{{session.user.name}}';
+
+              $(#login_submit).click(function() {
+                    if(loggedInName!=''){
+                      alert(Login sucessful);
+                    }
+                  });
+                                  });
+</script>
 
 
 </head>
 
 <body>
 
-  {{> header}}
+        {{> header}}
+
 
   <!-- Search and Filter area -->
   <section>

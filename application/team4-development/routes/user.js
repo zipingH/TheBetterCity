@@ -18,8 +18,10 @@ const router = express.Router()
 
 //route for login
 router.post('/login' , (req, res) =>{
+  console.log("--Inside login --");
   var email = req.body.email;
     var password = req.body.password;
+    console.log('Email:' + email +'Password:' + password);
     const queryString = "select * from user where email = ?";
 
     db.query(queryString, [email], (err, results) => {
@@ -35,7 +37,14 @@ router.post('/login' , (req, res) =>{
             }
             else if (email == userDetail.email && password == userDetail.password) {
                 req.session.user = userDetail;
-                res.status(200).json(userDetail).end();
+                //res.status(200).json(userDetail).end();
+                res.render('home',{session: req.session});
+                  console.log("--login successful  --");
+                  console.log('session:' + req.session);
+                  console.log('  req.session.user :' + req.session.user);
+                    console.log('  session.user.id :' + req.session.user.id);
+                      console.log('  session.user.name :' + req.session.user.name);
+                        console.log('  session.user.email :' + req.session.user.email);
             }
             else {
                 res.status(401).end('unauthenticated');

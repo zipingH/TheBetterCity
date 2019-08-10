@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', (req, res) =>{
   console.log("--Inside Main--");
-  res.render('Home');
+  res.render('Home',{ session: req.session ? req.session : ''});
 });
 
 router.get('/submitIssue', (req, res) =>{
