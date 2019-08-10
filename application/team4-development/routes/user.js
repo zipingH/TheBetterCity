@@ -57,7 +57,7 @@ router.post('/reset' , (req, res) =>{
     console.log('name:' + req.body.name);
     console.log('email:' +req.body.email);
 
-    const queryString = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+    const queryString = "INSERT INTO user (name, email, password, role) VALUES (?, ?, ?, 'user')";
 
     db.query(queryString, [req.body.name, req.body.email, req.body.password], (err, results) => {
       if (err) {
