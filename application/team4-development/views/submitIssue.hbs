@@ -38,6 +38,45 @@
   <script type="text/javascript" src="js/pagination.js"></script>
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-144899618-1');
+
+  </script>
+
+
+  <script>
+            var loggedInId = '';
+            var loggedInName = '';
+            $(document).ready(function() {
+                loggedInId = '{{session.user.id}}';
+                loggedInName = '{{session.user.name}}';
+$('#logout').hide();
+$('#hiUser').hide();
+
+
+
+                   if(loggedInName!=''){
+                     $('#hiUser').show();
+                     $("[data-target='#loginModal']").hide();
+                      $('#logout').show();
+
+                  }
+
+                 });
+
+</script>
+
+
 </head>
 
 <body>
@@ -65,7 +104,7 @@
               <label for="inputAddress">Street Address <font color="red">*</font></label>
               <input type="text" class="form-control " id="street" name="street" placeholder="1234 Main St" maxlength="50" pattern="[0-9]+[A-Za-z\s]+[A-Za-z\s]" oninvalid="setCustomValidity('Please input a valid street address')" oninput="setCustomValidity('')" required>
               </div>
-          </div>   
+          </div>
           <div class="form-group">
               <div class="form-row">
                 <div class="col-md-4">
@@ -136,7 +175,7 @@
                     </div>
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="category">Category <font color="red">*</font></label>
             <select class="form-control" name="category" required>
@@ -155,6 +194,7 @@
             <label for="description">Description<font color="red">*</font></label>
             <textarea class="form-control" rows="3" name="description" id="description"></textarea>
           </div>
+
           <div class="form-group">
             <button type="submit" class="form-control" name="button">Submit</button>
           </div>

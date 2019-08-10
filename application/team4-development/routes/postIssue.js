@@ -1,4 +1,4 @@
-/** 
+/**
 *  postIssue.js
 *  CSC648-su19-Team04
 *  The Better City
@@ -52,7 +52,7 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
     var description = req.body.description;
     var category = req.body.category;
     //email needs to be changed to the email of the user that is logged in
-    var email = "john@john.com";
+    var email = req.session.user.email;
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();

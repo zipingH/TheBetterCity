@@ -61,15 +61,17 @@
                 loggedInId = '{{session.user.id}}';
                 loggedInName = '{{session.user.name}}';
 $('#logout').hide();
+$('#hiUser').hide();
 
 
 
                    if(loggedInName!=''){
+                     $('#hiUser').show();
                      $("[data-target='#loginModal']").hide();
                       $('#logout').show();
 
                   }
-                
+
                  });
 
 </script>
