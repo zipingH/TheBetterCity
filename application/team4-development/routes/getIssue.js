@@ -53,15 +53,17 @@ router.get('/dropdown', (req, res) => {
       } else {
         var length = results.length;
         var displayed = pageNo * pageSize;
-        if (displayed < length) {
+        if (pageSize < length) {
           results.splice(displayed, pageSize);
         }
+        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
+
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
           'pageNo': pageNo,
-          'from': displayed,
-          'to': (displayed + pageSize) - 1,
+          'from': displayed + 1,
+          'to': displaying,
           'total': length
         });
       }
@@ -75,15 +77,16 @@ router.get('/dropdown', (req, res) => {
       } else {
         var length = results.length;
         var displayed = pageNo * pageSize;
-        if (displayed < length) {
+        if (pageSize < length) {
           results.splice(displayed, pageSize);
         }
+        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
           'pageNo': pageNo,
-          'from': displayed,
-          'to': (displayed + pageSize) - 1,
+          'from': displayed + 1,
+          'to': displaying,
           'total': length
         });
       }
@@ -100,15 +103,16 @@ router.get('/dropdown', (req, res) => {
       } else {
         var length = results.length;
         var displayed = pageNo * pageSize;
-        if (displayed < length) {
+        if (pageSize < length) {
           results.splice(displayed, pageSize);
         }
+        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
           'pageNo': pageNo,
-          'from': displayed,
-          'to': (displayed + pageSize) - 1,
+          'from': displayed + 1,
+          'to': displaying,
           'total': length
         });
       }

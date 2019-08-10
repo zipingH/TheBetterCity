@@ -57,22 +57,31 @@
       var status_id = search_params.get('status_id');
       var title = search_params.get('title');
       var pageNo = search_params.get('pageNo');
+      var from = '{{from}}';
+      var to = '{{to}}';
+      var total = '{{total}}';
 
       $('a#nextBtn').click(function() {
         debugger;
+        if(to == total) {
+          alert('No next records.')
+          return;
+        }
         pageNo = pageNo + 1;
         window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
       });
       $('a#prevBtn').click(function() {
         debugger;
-         pageNo = pageNo - 1;
-         window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
+        if(from == 1) {
+          alert('No previous records.')
+          return;
+        }
+        pageNo = pageNo - 1;
+        window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
       });
 
     });
   </script>
-
-
 </head>
 
 <body>
