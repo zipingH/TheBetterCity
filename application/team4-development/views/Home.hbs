@@ -60,13 +60,18 @@
             $(document).ready(function() {
                 loggedInId = '{{session.user.id}}';
                 loggedInName = '{{session.user.name}}';
+$('#logout').hide();
 
-              $(#login_submit).click(function() {
-                    if(loggedInName!=''){
-                      alert(Login sucessful);
-                    }
-                  });
-                                  });
+
+
+                   if(loggedInName!=''){
+                     $("[data-target='#loginModal']").hide();
+                      $('#logout').show();
+
+                  }
+                
+                 });
+
 </script>
 
 

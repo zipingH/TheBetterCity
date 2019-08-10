@@ -33,7 +33,8 @@ router.post('/login' , (req, res) =>{
         else {
             const userDetail = results[0];
             if (!userDetail) {
-                res.status(401).end('unauthenticated');
+                console.log('Email not found in DB');
+                res.render('home');
             }
             else if (email == userDetail.email && password == userDetail.password) {
                 req.session.user = userDetail;
@@ -47,7 +48,8 @@ router.post('/login' , (req, res) =>{
                         console.log('  session.user.email :' + req.session.user.email);
             }
             else {
-                res.status(401).end('unauthenticated');
+              console.log('Password doesnt match ');
+                res.render('home');
             }
         }
     })
@@ -80,7 +82,7 @@ router.post('/reset' , (req, res) =>{
 })
 
   //route for logout
-  router.post('/logout' , (req, res) =>{
+  router.get('/logout' , (req, res) =>{
     req.session.destroy(function() {
         console.log("user logged out.")
     });
