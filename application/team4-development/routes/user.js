@@ -49,7 +49,7 @@ router.post('/login' , (req, res) =>{
             }
             else {
               console.log('Password doesnt match ');
-                res.render('home');
+                res.redirect('home');
             }
         }
     })

@@ -28,15 +28,17 @@ router.get('/showDetail', (req, res) => {
     console.log(req.query)
     console.log(issue_id)
 
-    const query_showIssue = "SELECT * FROM issue, status, category WHERE  issue_id = ?  AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+    const query_showIssue =   "SELECT * FROM issue, status,user, category WHERE  issue.issue_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id AND issue.user_id =user.id ;"
     db.query(query_showIssue , [issue_id], (err, results) => {
         if (err) {
             return res.status(400).send({
                 err
             });
         } else {
+          console.log(results);
             res.render('showDetail', { 'parks': results });
     }
+});
 });
 
 
