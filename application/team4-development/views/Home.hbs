@@ -51,18 +51,16 @@
 
     gtag('config', 'UA-144899618-1');
     $(document).ready(function() {
-      debugger;
       var search_params = new URLSearchParams(document.location.search);
       var category_id = search_params.get('category_id');
       var status_id = search_params.get('status_id');
       var title = search_params.get('title');
-      var pageNo = search_params.get('pageNo');
+      var pageNo = search_params.get('pageNo') ? parseInt(search_params.get('pageNo')) : 0;
       var from = '{{from}}';
       var to = '{{to}}';
       var total = '{{total}}';
 
       $('a#nextBtn').click(function() {
-        debugger;
         if (to == total) {
           alert('No next records.')
           return;
@@ -71,7 +69,6 @@
         window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
       });
       $('a#prevBtn').click(function() {
-        debugger;
         if (from == 1) {
           alert('No previous records.')
           return;
@@ -79,7 +76,6 @@
         pageNo = pageNo - 1;
         window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
       });
-
     });
   </script>
 </head>
@@ -132,55 +128,51 @@
     {{#if parks }}
 
       <section style="min-height:50%">
-        <div class="container">
-          <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
-          {{#each parks}}
+        <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
+        {{#each parks}}
 
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-1">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-1">
 
-                </div>
-                <div class="col-sm-10 d-flex justify-content-center">
-                  <div class="card w-75 m-3">
-                    <div class="card-header">
-                      {{title}}
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-ìnline d-flex justify-content-between">
-                        <!-- <li class="list-inline-item">
+              </div>
+              <div class="col-sm-10 d-flex justify-content-center">
+                <div class="card w-75 m-3">
+                  <div class="card-header">
+                    {{title}}
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-ìnline d-flex justify-content-between">
+                      <!-- <li class="list-inline-item">
                         <h6>Date: <b>{{date}}</b></h6>
                       </li> -->
-                        <li class="list-inline-item">
-                          <h6>Location: <b>{{location}}</b></h6>
-                        </li>
-                        <li class="list-inline-item">
-                          <h6>Category: <b>{{category}}</b></h6>
-                        </li>
-                        <li class="list-inline-item">
-                          <h6>Status: <b>{{status}}</b></h6>
-                        </li>
-                      </ul>
-                      <h6 class="card-title">Description</h6>
-                      <p class="card-text">{{description}}</p>
-                      <!-- Show details modal in 'show' partials -->
-                      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>
-                      {{> show}}
+                      <li class="list-inline-item">
+                        <h6>Location: <b>{{location}}</b></h6>
+                      </li>
+                      <li class="list-inline-item">
+                        <h6>Category: <b>{{category}}</b></h6>
+                      </li>
+                      <li class="list-inline-item">
+                        <h6>Status: <b>{{status}}</b></h6>
+                      </li>
+                    </ul>
+                    <h6 class="card-title">Description</h6>
+                    <div class="card-text col-12 text-truncate">{{description}}</div>
+                    <!-- Show details modal in 'show' partials -->
+                    <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right" >Show Details</a>
 
-
-
-                      {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
-                    </div>
+                    {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
                   </div>
                 </div>
-                <div class="col-sm-1">
+              </div>
+              <div class="col-sm-1">
 
-                </div>
               </div>
             </div>
+          </div>
+          {{/each}}
       </section>
 
-      {{/each}}
 
       <!-- Pagination -->
       <section>

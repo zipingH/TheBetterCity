@@ -54,7 +54,7 @@ router.get('/dropdown', (req, res) => {
         var length = results.length;
         var displayed = pageNo * pageSize;
         if (pageSize < length) {
-          results.splice(displayed, pageSize);
+          results = results.splice(displayed, pageSize);
         }
         var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
 

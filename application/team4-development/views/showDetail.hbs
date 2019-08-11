@@ -98,16 +98,26 @@
             </div>
             <!--context-->
             <div class="card-body">
-
-              <p class="card-text">Full context show in here test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test .
-              </p>
+              <ul class="list-ìnline d-flex justify-content-between">
+                <li class="list-inline-item">
+                  <h6>Date : <b>{{date}}</b></h6>
+                </li>
+                <li class="list-inline-item">
+                  <h6>Location : <b>{{location}}</b></h6>
+                </li>
+                <li class="list-inline-item">
+                  <h6>Category : <b>{{category}}</b></h6>
+                </li>
+                <li class="list-inline-item">
+                  <h6>Status : <b>{{status}}</b></h6>
+                </li>
+              </ul>
+              <h6 class="card-title">Description</h6>
+              <p class="card-text">{{description}}</p>
 
               <!--image--></br>
 
-              <img src="img/flood.jpg" alt="image" class="img-thumbnail">
+              <img src="{{photo}}" alt="image" class="img-thumbnail">
 
             </div>
 
