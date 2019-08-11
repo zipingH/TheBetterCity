@@ -17,6 +17,7 @@
         "cors": "^2.8.5",
         "ejs": "^2.6.1",
         "express": "^4.17.1",
+        "express-session": "^1.16.2",
         "file-system": "^2.2.2",
         "handlebars": "^4.1.2",
         "handlebars-helper-equal": "^1.0.0",

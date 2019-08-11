@@ -1,0 +1,76 @@
+
+<!--Contact.html
+//  CSC648-su19-Team04
+//  The Better City
+//  Created by Fengze on 7/28/19.
+//  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
+
+{{> head}}
+
+
+<body>
+
+  {{> header}}
+    {{> navbar}}
+
+
+
+
+
+  <!-- Title of page -->
+  <section class="d-flex justify-content-center">
+    <h3>Contact Us</h3>
+  </section>
+
+  <!-- Show details section section -->
+
+  <!--Back to home page-->
+  <section>
+    <div class="row">
+      <div class="col-sm-12 d-flex justify-content-center">
+        <a href="/" class="btn btn-primary">Go Back</a>
+      </div>
+    </div>
+  </section>
+
+  {{#each parks}}
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-10 d-flex justify-content-center">
+          <div class="card w-75 m-3">
+            <div class="card-header">
+              <p>{{title}}  Location: {{location}}  Status: {{status}}  Category:{{category}}  <br> Reported By:{{name}}   Reported On:{{time_stamp}}</P>
+            </div>
+            <!--context-->
+            <div class="card-body">
+
+              <p class="card-text">{{description}}
+              </p>
+
+              <!--image--></br>
+
+              <img src="{{photo}}" alt="image" class="img-thumbnail">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  {{/each}}
+
+{{> footer}}
+
+
+
+
+  </body>
+
+  </html>

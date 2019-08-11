@@ -1,0 +1,186 @@
+<!--Header.html
+//  CSC648-su19-Team04
+//  The Better City
+//  Created by Soham on 7/28/19.
+//  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
+
+<!--================ Start header Top Area =================-->
+<section class="header-top">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <a href="/" class="logo">
+          <img src="../img/sfsu_logo.png" style="height:10%;width:50%" alt="">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 logo-wrapper">
+        <img src="../img/logo.png" alt="">
+        <h5>SFSU Software Engineering Project CSC 648-848, Summer 2019</h5>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 search-trigger">
+        <div class="right-button">
+          <ul>
+              <li><div id="hiUser"><p>Hi {{session.user.name}} !</p></div></li>
+          <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login / Sign Up</a></li>
+            <li><a id="logout" class="" href="/logout" value="Log out">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center m-1" style="text-align:center">
+      <div class="col-lg-12">
+        <h6>We help you check the environmental issues and connect to the right authority in reporting them. Together, our passion for nature can make a difference in preserving our green space! </h6>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!--================ End header top Area =================-->
+
+<!-- Login Modal -->
+<div class=" modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Log In</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form class="login-input" action="login" method="POST">
+                            <div class="form-group">
+                                <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+                              </div>
+                                <div class="form-group">
+                                <button id="login_submit">Log in</button>
+                            </div>
+                        </form>
+
+        <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
+        <p class="mt-1 login-form__footer"><a href="#" id="signUpClick" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class=" modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Reset/Forgot Password ?</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="login-input" action="/reset" method="post" >
+          <div class="form-group">
+            <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
+          </div>
+        <div class="form-group">
+        <input type="submit" value="Reset Password" >
+      </div>
+</form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SignUp Modal -->
+<div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Sign Up</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="login-input" action="/register" method="post">
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Name *" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email *" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password *" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password2" placeholder="Re-type Password *" required>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+              <label class="form-check-label" for="defaultCheck1">
+              By signing up with us, you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a><font color="red">*</font>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div id="captcha" style="margin-left:10px"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="cpatchaTextBox" placeholder="Enter Captcha" required>
+          </div>
+          <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('#signUpClick').on('click', function() {
+    createCaptcha();
+  });
+  //Captcha code
+  var code;
+
+  function createCaptcha() {
+    //clear the contents of captcha div first
+    debugger;
+    document.getElementById('captcha').innerHTML = "";
+    var charsArray = "0123456789 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ @!#$ % ^ & * ";
+    var lengthOtp = 6;
+    var captcha = [];
+    for (var i = 0; i < lengthOtp; i++) {
+      //below code will not allow Repetition of Characters
+      var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+      if (captcha.indexOf(charsArray[index]) == -1)
+        captcha.push(charsArray[index]);
+      else i--;
+    }
+    var canv = document.createElement("canvas");
+    canv.id = "captcha";
+    canv.width = 110;
+    canv.height = 38;
+    var ctx = canv.getContext("2d");
+    ctx.font = "25px Georgia";
+    ctx.strokeText(captcha.join(""), 0, 30);
+    //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+    code = captcha.join("");
+    document.getElementById('captcha').appendChild(canv); // adds the canvas to the body element
+  }
+
+  // $('#signUpForm').on('submit', function() {
+  //
+  // });
+
+  // if (document.getElementById('cpatchaTextBox').value != code) {
+  //   alert('Invalid Captcha.try Again');
+  //   //return false;
+  //   //createCaptcha();
+  // }
+</script>

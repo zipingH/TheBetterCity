@@ -1,0 +1,211 @@
+
+<!--Home.hbs
+//  CSC648-su19-Team04
+//  The Better City
+//  Created by Soham on 7/28/19.
+//  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
+
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <title>The Better City</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/themify-icons.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/animate-css/animate.css">
+  <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+
+  <!-- main css -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pagination.css">
+  <!-- js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://github.com/yckart/jquery.storage.js"></script>
+  <script type="text/javascript" src="js/sessionStorage.js"></script>
+  <script type="text/javascript" src="js/filterOption.js"></script>
+  <script type="text/javascript" src="js/pagination.js"></script>
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-144899618-1');
+
+  </script>
+
+
+  <script>
+            var loggedInId = '';
+            var loggedInName = '';
+            $(document).ready(function() {
+                loggedInId = '{{session.user.id}}';
+                loggedInName = '{{session.user.name}}';
+$('#logout').hide();
+$('#hiUser').hide();
+
+
+
+                   if(loggedInName!=''){
+                     $('#hiUser').show();
+                     $("[data-target='#loginModal']").hide();
+                      $('#logout').show();
+
+                  }
+
+                 });
+
+</script>
+
+
+</head>
+
+<body>
+
+  {{> header}}
+
+  {{> navbar}}
+
+  <!-- Title of page -->
+  <section class="d-flex justify-content-center">
+    <h3>Submit Issue</h3>
+  </section>
+
+  <!-- Submit issue section -->
+  <section class="d-flex justify-content-center">
+    <div class="container w-50">
+      <div class="row">
+        <form class="form w-100" action="/postIssue" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="title">Title <font color="red">*</font></label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title" maxlength="50" pattern="^[0-9a-zA-Z.-\s]*" required>
+          </div>
+          <div class="form-group">
+              <div class="form-rows">
+              <label for="inputAddress">Street Address <font color="red">*</font></label>
+              <input type="text" class="form-control " id="street" name="street" placeholder="1234 Main St" maxlength="50" pattern="[0-9]+[A-Za-z\s]+[A-Za-z\s]" oninvalid="setCustomValidity('Please input a valid street address')" oninput="setCustomValidity('')" required>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-4">
+                  <label for="inputCity">City <font color="red">*</font></label>
+                  <input type="text" class="form-control" id="city" name ="city" placeholder="City" maxlength="50" pattern="[A-Za-z\s]+" oninvalid="setCustomValidity('Please input a valid city ')"  oninput="setCustomValidity('')" required>
+              </div>
+
+                <div class="col-md-4">
+                  <label for="selectState">State <font color="red">*</font></label>
+                  <select class="custom-select" name="state" id="state" required>
+                      <option value="" selected="selected">Select a State</option>
+                      <option value="AL">Alabama</option>
+                      <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
+                      <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="DC">District Of Columbia</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
+                      <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
+                      <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
+                    </select>
+                    </div>
+                    <div class="col-md-4">
+                  <label for="validationServer05">Zip  <font color="red">*</font></label>
+                  <input type="text"  class="form-control" id="zip" name ="zip" placeholder="Zip" pattern = "[0-9]{5}" maxlength="50" oninvalid="setCustomValidity('Please enter a 5 digit zip code')" oninput="setCustomValidity('')" required>
+                    </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category <font color="red">*</font></label>
+            <select class="form-control" name="category" required>
+              <option name="Litter" value="Litter">Litter</option>
+              <option name="Water Polution" value="Water Polution">Water Polution</option>
+              <option name="Bio-Hazards" value="Bio-Hazards">Bio-Hazards</option>
+              <option name="Broken City Property" value="Broken City Property">Broken City Property</option>
+              <option name="Other" value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="imageUpload">Upload Image</label>
+            <input type="file" class="form-control-file" name="photo" id="photo">
+          </div>
+          <div class="form-group">
+            <label for="description">Description<font color="red">*</font></label>
+            <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="form-control" name="button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  {{> footer}}
+
+
+</body>
+
+</html>
