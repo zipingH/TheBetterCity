@@ -92,7 +92,8 @@ router.get('/dropdown', (req, res) => {
         }
      })
     }
-})
+});
+
 
 
 module.exports = router

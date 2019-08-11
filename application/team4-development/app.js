@@ -65,6 +65,9 @@ app.use(main);
 const user = require('./routes/user.js');
 app.use(user);
 
+const showDetailRoute = require('./routes/showDetailRoute.js');
+app.use(showDetailRoute);
+
 app.listen(80, () => {
   console.log("Server is up and listening on 80...")
 })

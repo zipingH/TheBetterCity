@@ -16,11 +16,6 @@ router.get('/submitIssue', (req, res) =>{
   res.render('submitIssue');
 });
 
-router.get('/showDetail', (req, res) =>{
-  console.log("--Inside showDetail--");
-  res.render('showDetail');
-});
-
 router.get('/contact', (req, res) =>{
   console.log("--Inside contact--");
   res.render('contact');
