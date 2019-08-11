@@ -48,10 +48,10 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
     var title = req.body.title;
     //const photoPath = "../IssueImages/";
     var photo;
-    if(photo == null){
+    if (!req.file) {
         photo = '';
         console.log('No Photo added');
-    }else{
+    } else {
         photo = req.file.filename;
         console.log('Photo has added with filename');
     }
@@ -65,15 +65,8 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + ' ' + time;
     const query_postIssue = "INSERT INTO issue(issue_id, title, photo, location, description, status_id, user_id, time_stamp, category_id) VALUES (@issue_id, ? , concat('../IssueImages/', ? ), ? , ? , '6',(SELECT id FROM user where email = ? ), ? , (SELECT category_id FROM category WHERE category = ? ));"
-    
+
     db.query(query_postIssue, [title, photo, location, description, email, dateTime, category], (err, result) => {
-        if (!req.file) {
-            message = "No photo added"
-            console.log("No photo received");
-            return res.send({
-                message: message
-            });
-        }
 
         if (err) {
             message = "Failed to submit issue: " + err;
