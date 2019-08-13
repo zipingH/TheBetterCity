@@ -61,13 +61,22 @@
       var from = '{{from}}';
       var to = '{{to}}';
       var total = '{{total}}';
+
+      var queryString = '/dropdown?';
+      if(category_id == null && status_id > 5) {
+        queryString = queryString + 'status_id=' + status_id;
+      } else {
+        queryString = queryString + 'category_id=' + category_id;
+      }
+      queryString = queryString + '&title=' + title;
+
       $('a#nextBtn').click(function() {
         if (to == total) {
           alert('No next records.')
           return;
         }
         pageNo = pageNo + 1;
-        window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
+        window.location.href = queryString + '&pageNo=' + pageNo;
       });
       $('a#prevBtn').click(function() {
         if (from == 1) {
@@ -75,8 +84,9 @@
           return;
         }
         pageNo = pageNo - 1;
-        window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
+        window.location.href = queryString + '&pageNo=' + pageNo;
       });
+
     });
   </script>
 </head>
@@ -121,50 +131,50 @@
       <section class="d-flex justify-content-center">
         <h4>Search Page</h4>
       </section>
-
       <section style="min-height:50%">
-        <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
+        <div class="container">
+          <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
+          {{#each parks}}
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-1">
 
-        {{#each parks}}
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-1">
-
-              </div>
-              <div class="col-sm-10 d-flex justify-content-center">
-                <div class="card w-75 m-3">
-                  <div class="card-header">
-                    {{title}}
-                  </div>
-                  <div class="card-body">
-                    <ul class="list-ìnline d-flex justify-content-between">
-                      <!-- <li class="list-inline-item">
+                </div>
+                <div class="col-sm-10 d-flex justify-content-center">
+                  <div class="card w-75 m-3">
+                    <div class="card-header">
+                      {{title}}
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-ìnline d-flex justify-content-between">
+                        <!-- <li class="list-inline-item">
                         <h6>Date: <b>{{date}}</b></h6>
                       </li> -->
-                      <li class="list-inline-item">
-                        <h6>Location: <b>{{location}}</b></h6>
-                      </li>
-                      <li class="list-inline-item">
-                        <h6>Category: <b>{{category}}</b></h6>
-                      </li>
-                      <li class="list-inline-item">
-                        <h6>Status: <b>{{status}}</b></h6>
-                      </li>
-                    </ul>
-                    <h6 class="card-title">Description</h6>
-                    <p class="card-text">{{description}}</p>
-                    {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
-                    {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
-                    <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+                        <li class="list-inline-item">
+                          <h6>Location: <b>{{location}}</b></h6>
+                        </li>
+                        <li class="list-inline-item">
+                          <h6>Category: <b>{{category}}</b></h6>
+                        </li>
+                        <li class="list-inline-item">
+                          <h6>Status: <b>{{status}}</b></h6>
+                        </li>
+                      </ul>
+                      <h6 class="card-title">Description</h6>
+                      <p class="card-text">{{description}}</p>
+                      {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
+                      {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                      <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-sm-1">
+                <div class="col-sm-1">
 
+                </div>
               </div>
             </div>
-          </div>
-        {{/each}}
+          {{/each}}
+
       </section>
 
 
@@ -197,7 +207,7 @@
           </div>
         </section>
       {{/equal}}
-      
+
       <section class="d-flex justify-content-center">
         <h5>Recent Issues</h5>
       </section>
