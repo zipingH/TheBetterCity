@@ -55,7 +55,7 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
         photo = req.file.filename;
         console.log('Photo has added with filename');
     }
-    var location = req.body.street + ", " + req.body.city + ", " + req.body.state + ", " + req.body.zip;
+    var location = req.body.location;
     var description = req.body.description;
     var category = req.body.category;
     //email needs to be changed to the email of the user that is logged in

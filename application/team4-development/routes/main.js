@@ -7,8 +7,17 @@ var fs = require('fs');
 const router = express.Router()
 
 router.get('/', (req, res) =>{
-  console.log("--Inside Main--");
-  res.render('Home',{ session: req.session ? req.session : ''});
+  var queryRecent = 'SELECT * FROM csc648_db.issue order by time_stamp desc limit 4;'
+  db.query(queryRecent, (err, results)=>{
+      if (err) {
+        return res.status(400).send({
+            err
+        });
+    } else {
+      console.log("--Inside Main--");
+      res.render('Home',{ 'session': req.session ? req.session : '', 'recentIssues' : results});
+    }
+  })
 });
 
 router.get('/submitIssue', (req, res) =>{

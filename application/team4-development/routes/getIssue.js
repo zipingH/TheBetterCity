@@ -20,6 +20,42 @@ Object.prototype.isEmpty = function () {
     return true;
 }
 
+router.post('/search', (req, res) => {
+    const searchBy = req.body.searchBy;
+    const searchText = req.body.searchText;
+    const filters = req.body.filters;
+    var queryParams = [];
+
+    var query = 'select * from issue';
+
+    if(searchBy == 'location'){
+        query = query + 'where location LIKE concat('%', ? ,'%')';
+        queryParams[0] = searchText;
+    } else if(searchBy == 'title') {
+        query = query + 'where title LIKE concat('%', ? ,'%')';
+        queryParams[0] = searchText;
+    }
+
+    if(filters.categories) {
+        query = query + ' and category_id IN ?';
+        queryParams[1] = filters.categories;
+    }
+    if(filters.status) {
+        query = query + ' and status IN ?';
+        queryParams[1] = filters.status;
+    }
+    db.query(query, queryParams, (req, res)=>{
+        if (err) {
+            return res.status(400).send({
+                err
+            });
+        } else {
+            //res.render('Home', { 'parks': results });
+            res.send(results);
+        }
+    })
+});
+
 //route for getting a filter and search
 router.get('/dropdown', (req, res) => {
 
