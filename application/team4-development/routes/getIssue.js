@@ -12,7 +12,7 @@ const router = express.Router()
 
 
 //to check for empty object on error handling
-Object.prototype.isEmpty = function() {
+Object.prototype.isEmpty = function () {
   for (var key in this) {
     if (this.hasOwnProperty(key))
       return false;
@@ -26,6 +26,7 @@ router.get('/dropdown', (req, res) => {
   const category_id = req.query.category_id;
   const title = req.query.title;
   const status_id = req.query.status_id;
+  const location = req.query.location
   var pageNo = req.query.pageNo;
   console.log(req.query)
   console.log("inside filter dropdown:--");
@@ -33,7 +34,7 @@ router.get('/dropdown', (req, res) => {
   console.log('search:' + title);
   console.log('Page No :' + pageNo);
   var pageNo = req.query.pageNo ? req.query.pageNo : 0;
-  var pageSize = 4;
+  var pageSize = 5;
   var startIndex = 0;
   var endIndex = 3;
 
@@ -44,6 +45,7 @@ router.get('/dropdown', (req, res) => {
   //const queryString2= "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id INTERSECT SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   const query_selectAll = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   const query_selectStatus = "SELECT * FROM issue, status, category WHERE  issue.status_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+  const query_location = "SELECT * FROM issue, status, category WHERE issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   if (category_id == 0) {
     db.query(query_selectAll, [title], (err, results) => {
       if (err) {
@@ -94,7 +96,7 @@ router.get('/dropdown', (req, res) => {
   }
 
   // dropdown menu route to select status if category_id is not in the database
-  else {
+  else if (status_id > 5) {
     db.query(query_selectStatus, [status_id, title], (err, results) => {
       if (err) {
         return res.status(400).send({
@@ -103,10 +105,34 @@ router.get('/dropdown', (req, res) => {
       } else {
         var length = results.length;
         var displayed = pageNo * pageSize;
-        if (pageSize < length) {
+        /*if (pageSize < length) {
           results.splice(displayed, pageSize);
-        }
-        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
+        } */
+        var displaying = length;
+        res.render('Home', {
+          'parks': results,
+          'pageSize': pageSize,
+          'pageNo': pageNo,
+          'from': displayed + 1,
+          'to': displaying,
+          'total': length
+        });
+      }
+    })
+  }
+  else {
+    db.query(query_location,[location], (err, results) => {
+      if (err) {
+        return res.status(400).send({
+          err
+        });
+      } else {
+        var length = results.length;
+        var displayed = pageNo * pageSize;
+        /*if (pageSize < length) {
+          results.splice(displayed, pageSize);
+        } */
+        var displaying = length;
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
