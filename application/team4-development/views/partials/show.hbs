@@ -1,0 +1,55 @@
+<!--show.hbs
+//  CSC648-su19-Team04
+//  The Better City
+//  Created by Maithri on 8/10/19.
+//  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
+
+<!-- Show details Modal -->
+<div class=" modal fade" id="showDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Details</h6>
+        <button type="button"  data-dismiss="modal" >Back</button>
+
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-1">
+
+              </div>
+              <div class="col-sm-10 d-flex justify-content-center">
+                <div class="card w-75 m-3">
+                  <div class="card-header">
+                    <p>{{title}} Location:{{location}} Category: {{category}} Status: {{status}} Reported By: {{user}} Reported on: {{time_stamp}}</P>
+                  </div>
+                  <!--context-->
+                  <div class="card-body">
+
+                    <p class="card-text">{{description}}
+                    </p>
+
+                    <!--image--></br>
+
+                    <img src={{photo}} alt="image" class="img-thumbnail">
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

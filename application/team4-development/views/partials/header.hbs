@@ -1,4 +1,4 @@
-<!--Header.html
+<!--header.hbs
 //  CSC648-su19-Team04
 //  The Better City
 //  Created by Soham on 7/28/19.
@@ -9,16 +9,15 @@
 <section class="header-top">
   <div class="container">
     <div class="row align-items-center justify-content-between">
-      <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-center">
         <a href="/" class="logo">
-          <img src="../img/sfsu_logo.png" style="height:10%;width:50%" alt="">
+          <img src="../img/logo.png" alt="">
         </a>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 logo-wrapper">
-        <img src="../img/logo.png" alt="">
+      <div class="col-lg-6 col-md-4 col-sm-4 logo-wrapper d-flex flex-column">
         <h5>SFSU Software Engineering Project CSC 648-848, Summer 2019</h5>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 search-trigger">
+      <div class="col-lg-3 col-md-4 col-sm-4 search-trigger d-flex justify-content-center">
         <div class="right-button">
           <ul>
               <li><div id="hiUser"><p>Hi {{session.user.name}} !</p></div></li>
@@ -150,7 +149,6 @@
 
   function createCaptcha() {
     //clear the contents of captcha div first
-    debugger;
     document.getElementById('captcha').innerHTML = "";
     var charsArray = "0123456789 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ @!#$ % ^ & * ";
     var lengthOtp = 6;

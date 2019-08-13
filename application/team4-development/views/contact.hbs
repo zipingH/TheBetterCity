@@ -35,36 +35,38 @@
   <script type="text/javascript" src="js/sessionStorage.js"></script>
   <script type="text/javascript" src="js/filterOption.js"></script>
   <script type="text/javascript" src="js/pagination.js"></script>
-  
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script>
-            var loggedInId = '';
-            var loggedInName = '';
-            $(document).ready(function() {
-                loggedInId = '{{session.user.id}}';
-                loggedInName = '{{session.user.name}}';
-$('#logout').hide();
-$('#hiUser').hide();
 
-
-
-                   if(loggedInName!=''){
-                     $('#hiUser').show();
-                     $("[data-target='#loginModal']").hide();
-                      $('#logout').show();
-
-                  }
-
-                 });
-
-</script>
 </head>
-
 <body>
 
   {{> header}}
 
-  {{> navbar}}
+  {{> search}}
+
+  <!-- Start header Menu Area -->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
+              <li class="nav-item active"><a class="nav-link" href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
 
 
   <!-- Title of page -->
@@ -102,7 +104,16 @@ $('#hiUser').hide();
         </div>
         <div class="col-sm-6">
           <div id="Layer1" class="w-100 h-100" style="margin-left:50%">
-            <img src="./img/contactus.png" />
+            <img src="./img/contactus.png"/>
+          </div>
+          <br>
+          <div style="text-align: end;">
+            <h5>Office :</h5>
+            <h6>1509 Decoto Road,</h6>
+            <h6>Parkside 267,</h6>
+            <h6>Fremont, CA 98756</h6>
+            <h6>Phone : 510 668 9856</h6>
+             <h6>Email : contact@tbc.com</h6>
           </div>
         </div>
 
@@ -110,9 +121,9 @@ $('#hiUser').hide();
     </div>
   </section>
 
-  {{> footer}}
+{{> footer}}
 
 
-</body>
+  </body>
 
-</html>
+  </html>

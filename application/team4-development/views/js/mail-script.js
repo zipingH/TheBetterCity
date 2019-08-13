@@ -1,3 +1,10 @@
+/*
+  mail-script.js
+  CSC648-su19-Team04
+  The Better City
+  Created by Soham on 7/28/19.
+  Copyright © CSC-648/848 Team 04. All rights reserved.
+*/
     // -------   Mail Send ajax
 
      $(document).ready(function() {

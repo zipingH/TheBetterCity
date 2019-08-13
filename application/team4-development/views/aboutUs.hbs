@@ -77,7 +77,31 @@ $('#hiUser').hide();
 
   {{> header}}
 
-  {{> navbar}}
+  {{> search}}
+
+  <!-- Start header Menu Area -->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+              <li class="nav-item active"><a class="nav-link" href="/aboutUs">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
 
   <!-- Title of page -->
   <section class="d-flex justify-content-center">
@@ -97,14 +121,14 @@ $('#hiUser').hide();
         <h4>
           Team 4 </h4>
         <br>
-        <br>
-        <h6>
+              <h6>
           Our Mission : Develop a website to report and search for environmental issues.
         </h6>
+        <p>We at “TheBetterCity” are a team of 8 computer science students at the SanFrancisco State University. We believe everyone is needed in our attempt to preserve our mother nature.We are all concerned about the future of our planet.Environmental issues are becoming a big part of everyone’s daily life, if it’s not already. On the way of having a better future for our city and its nature, we made the “TheBetterCity” application that provides a web-based service for allowing people to post and view environmental problems in their neighborhoods. It’s also a great tool for the environmental services companies to monitor and assign work for these issues and get them fixed.
+          </p>
+
       </div>
-      <br>
-      <br>
-      <br>
+
       <br>
       <div id="services-blocks" class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sblock">
