@@ -1,0 +1,32 @@
+<!-- Search and Filter area -->
+<section>
+  <div class="container d-flex justify-content-center">
+    <div class="row w-100 d-flex justify-content-center">
+      <form class="form-inline w-75" id="tableForm" action="/dropdown" method="get">
+        <div class="col-sm-12">
+          <select class="form-control" data-style="btn-info" name="category_id" id="filter" style="width:20%">
+
+            <option name="All" value="0">All</option>
+            <optgroup label="Select Category">
+              <option name="Litter" value="1">Litter</option>
+              <option name="Water Polution" value="2">Water Polution</option>
+              <option name="Bio-Hazards" value="3">Bio-Hazards</option>
+              <option name="Broken City Property" value="4">Broken City Property</option>
+              <option name="Other" value="5">Other</option>
+            </optgroup>
+            <optgroup label="Select Status">
+              <option name="Open" value="6">Open</option>
+              <option name="In Progress" value="7">In Progress</option>
+              <option name="Resolved" value="8">Resolved</option>
+            </optgroup>
+            <optgroup label="Search by Location">
+              <option name="location" Value="9">Location</option>
+            </optgroup>
+          </select>
+          <input id="search" type="text" name="title" placeholder="search by title..." class="form-control" value="" style="width:74%">
+          <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
