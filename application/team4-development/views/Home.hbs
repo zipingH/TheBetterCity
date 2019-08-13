@@ -84,60 +84,47 @@
 
   {{> header}}
 
-  <!-- Search and Filter area -->
-  <section>
-    <div class="container d-flex justify-content-center">
-      <div class="row w-100 d-flex justify-content-center">
-        <form class="form-inline w-75" id="tableForm" action="/dropdown" method="get">
-          <div class="col-lg-2 col-sm-4">
-            <select class="form-control w-100" data-style="btn-info" name="category_id" id="filter">
+  {{> search}}
 
-              <option name="All" value="0">All</option>
-              <optgroup label="Select Category">
-                <option name="Litter" value="1">Litter</option>
-                <option name="Water Polution" value="2">Water Polution</option>
-                <option name="Bio-Hazards" value="3">Bio-Hazards</option>
-                <option name="Broken City Property" value="4">Broken City Property</option>
-                <option name="Other" value="5">Other</option>
-              </optgroup>
-              <optgroup label="Select Status">
-                <option name="Open" value="6">Open</option>
-                <option name="In Progress" value="7">In Progress</option>
-                <option name="Resolved" value="8">Resolved</option>
-            </select>
+  <!-- Start header Menu Area -->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+            </ul>
           </div>
-          <div class="col-lg-8 col-sm-4">
-            <input id="search" type="text" name="title" placeholder="search by title..." class="form-control w-100" value="">
-          </div>
-          <div class="col-lg-2 col-sm-4">
-            <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
-          </div>
-
-
-          </div>
-        </form>
-      </div>
+        </div>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  {{> navbar}}
 
   <main>
 
 
-    <!-- Title of page -->
-    <section class="d-flex justify-content-center">
-      <h4>Search Page</h4>
-    </section>
-
     <!-- searcch list  area-->
 
     {{#if parks }}
+      <!-- Title of page -->
+      <section class="d-flex justify-content-center">
+        <h4>Search Page</h4>
+      </section>
 
       <section style="min-height:50%">
         <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
-        {{#each parks}}
 
+        {{#each parks}}
           <div class="container">
             <div class="row">
               <div class="col-sm-1">
@@ -164,11 +151,10 @@
                       </li>
                     </ul>
                     <h6 class="card-title">Description</h6>
-                    <div class="card-text col-12 text-truncate">{{description}}</div>
-                    <!-- Show details modal in 'show' partials -->
-                    <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right" >Show Details</a>
-
-                    {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                    <p class="card-text">{{description}}</p>
+                    {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
+                    {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                    <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
                   </div>
                 </div>
               </div>
@@ -177,7 +163,7 @@
               </div>
             </div>
           </div>
-          {{/each}}
+        {{/each}}
       </section>
 
 
@@ -204,8 +190,45 @@
         </section>
       {{/equal}}
 
+      <!-- Title of page -->
+      <section class="d-flex justify-content-center">
+        <h4>Home Page</h4>
+      </section>
+      <section class="d-flex justify-content-center">
+        <h5>Recent Issues</h5>
+      </section>
       <!--  when nothing is serached or when no search result is found  -->
-      {{> successStory}}
+      <section>
+        <div class="container">
+          <div class="row">
+            {{#each recentIssues}}
+              <div class="col-lg-6 col-sm-12" style="margin-top:15px">
+                <div class="card">
+                  <div class="card-header">
+                    {{title}}
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-ìnline d-flex justify-content-between">
+                      <!-- <li class="list-inline-item">
+                      <h6>Date: <b>{{date}}</b></h6>
+                    </li> -->
+                      <li class="list-inline-item">
+                        <h6>Location: <b>{{location}}</b></h6>
+                      </li>
+                    </ul>
+                    <h6 class="card-title">Description</h6>
+                    <div class="card-text col-12 text-truncate">{{description}}</div>
+                    <!-- Show details modal in 'show' partials -->
+                    <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+
+                    {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </section>
     {{/if}}
   </main>
 
