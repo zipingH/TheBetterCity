@@ -43,12 +43,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-144899618-1');
     $(document).ready(function() {
       var search_params = new URLSearchParams(document.location.search);
@@ -59,7 +57,6 @@
       var from = '{{from}}';
       var to = '{{to}}';
       var total = '{{total}}';
-
       $('a#nextBtn').click(function() {
         if (to == total) {
           alert('No next records.')

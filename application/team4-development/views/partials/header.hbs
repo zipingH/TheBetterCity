@@ -20,7 +20,9 @@
       <div class="col-lg-3 col-md-4 col-sm-4 search-trigger d-flex justify-content-center">
         <div class="right-button">
           <ul>
-            <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login</a></li>
+              <li><div id="hiUser"><p>Hi {{session.user.name}} !</p></div></li>
+          <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login / Sign Up</a></li>
+            <li><a id="logout" class="" href="/logout" value="Log out">Log out</a></li>
           </ul>
         </div>
       </div>
@@ -48,17 +50,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="login-input">
-          <div class="form-group">
 
-            <input id="username" type="email" class="form-control" placeholder="Email *" name="email" required>
-          </div>
-          <div class="form-group">
+          <form class="login-input" action="login" method="POST">
+                            <div class="form-group">
+                                <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+                              </div>
+                                <div class="form-group">
+                                <button id="login_submit">Log in</button>
+                            </div>
+                        </form>
 
-            <input id="password" type="password" class="form-control" placeholder="Password *" name="password" required>
-          </div>
-        </form>
-        <button class="btn login-form__btn submit w-100" id="login_submit">Log In</button>
         <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
         <p class="mt-1 login-form__footer"><a href="#" id="signUpClick" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
       </div>
@@ -78,16 +82,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="login-input">
+        <form class="login-input" action="/reset" method="post" >
           <div class="form-group">
-            <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
+            <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
           </div>
-        </form>
-        <button class="btn login-form__btn submit w-100" id="login_submit">Reset Password</button>
+        <div class="form-group">
+        <input type="submit" value="Reset Password" >
       </div>
-
+</form>
     </div>
   </div>
+</div>
 </div>
 
 <!-- SignUp Modal -->
@@ -103,22 +108,22 @@
       <div class="modal-body">
         <form class="login-input" action="/register" method="post">
           <div class="form-group">
-            <input type="text" class="form-control" name="Name" placeholder="Name *" required>
+            <input type="text" class="form-control" name="name" placeholder="Name *" required>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" name="Email" placeholder="Email *" required>
+            <input type="email" class="form-control" name="email" placeholder="Email *" required>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="Password" placeholder="Password *" required>
+            <input type="password" class="form-control" name="password" placeholder="Password *" required>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
+            <input type="password" class="form-control" name="password2" placeholder="Re-type Password *" required>
           </div>
           <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
               <label class="form-check-label" for="defaultCheck1">
-                Terms & Conditions *
+              By signing up with us, you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a><font color="red">*</font>
               </label>
             </div>
           </div>

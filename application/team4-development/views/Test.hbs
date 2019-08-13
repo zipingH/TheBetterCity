@@ -1,69 +1,24 @@
-
-<!--Test.hbs
-//  CSC648-su19-Team04
-//  The Better City
-//  Created by Maithri on 7/28/19.
-//  Copyright © CSC-648/848 Team 04. All rights reserved.
--->
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Vertical prototype testing</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="https://github.com/yckart/jquery.storage.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/testStyle.css" rel="stylesheet" />
-
-    <script type="text/javascript">
-        $(function () {
-
-        $("#btn").click(function () {
-
-             var item =  $("#filter option:selected").text();
-
-              sessionStorage.setItem("sele", item);
-              });
-
-              var ty = sessionStorage.getItem("sele");
-
-              if(ty){
-                //Set the value of select from sessionStorage
-                    $('#filter option').filter(function () { return $(this).html() == ty; }).prop('selected', true);
-               }
-            });
-
-            </script>
-
-<script type="text/javascript">
-$(function () {
-  $("#searchBtn").click(function(){
-var filterSel =  $("#filter option:selected").val();
-if (filterSel > 5)
-$("#filter").attr({"name" : "status_id"});
-  });
-});
-</script>
-
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
+  <h1>Testing page</h1>
+  <div class=row>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3">
+     <div class="input-group input-group-lg">
+   <form action="/search" method="get">
+     <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
+     <br>
+          <button class="btn btn-default" type="submit">Search</button>
+   </form>
 
-  <div class="page-header">
-    <h2 class="text-center">Team 04</h2>
-
-  <p class="text-center">CSC648-848 Summer 2019 Vertical Prototype test page </p>
-</div>
-
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
-   <form id="tableForm" class =filter action="/dropdown" method="get" >
-    <select class="selectpicker" data-style="btn-info" name="category_id" id="filter">
+   <form id="tableForm" action="/getCategory" method="get">
+    <select class="selectpicker" data-style="btn-info" name="category_id">
         <optgroup label="Select Category">
             <option name="All" value="0">All</option>
             <option name="Litter" value="1">Litter</option>
@@ -72,62 +27,37 @@ $("#filter").attr({"name" : "status_id"});
             <option name="Broken City Property" value="4">Broken City Property</option>
             <option name="Other" value="5">Other</option>
         </optgroup>
-        <optgroup label="Select Status">
-          <option name="All" value="0"> All</option>
-          <option name="Open" value="6"> Open </option>
-          <option name="Work in Progress" value="7"> Work in Progress </option>
-          <option name="Resolved" value="8"> Resolved </option>
-        </optgroup>
     </select>
-    <input id="search" type ="text" name="title" placeholder="search by title..." class="form-control">
-          <button type="submit" id="btn"><i class="fa fa-search"></i></button>
-
+    <input type="submit" />
 </form>
 
-</div>
-<div class="col-sm-2"></div>
-</div>
-
-
- <div class="row">
-   <div class="col-sm-2"></div>
-
+   </div>
+ </div>
  <div class="col-sm-8">
    <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Issue_id</th>
+      <th scope="col">ID</th>
       <th scope="col">Title</th>
       <th scope="col">Photo</th>
       <th scope="col">Location</th>
       <th scope="col">Description</th>
-      <th scope="col">Category</th>
-      <th scope="col">Status</th>
-
     </tr>
   </thead>
-
-{{#if parks }}
-  <p>{{parks.length}} results found: </p>
-
          {{#each parks}}
-
     <tr scope="row">
         <td>
-            {{issue_id}}
+            {{id}}
         </td>
         <td>
             {{title}}
         </td>
         <td>
-          {{#if photo }}
-              <a target="_blank" href="{{photo}}">
-                  <img src = "{{photo}}" width="150" height="150">
-
+          {{#if photo}}
+          <img src = "{{photo}}" width="150" height="150">
           {{else}}
-              <p>No Photo</p>
-  {{/if}}
-
+          <img src="../IssueImages/no-image.jpg" width="150" height="150">
+          {{/if}}
         </td>
         <td>
             {{location}}
@@ -135,29 +65,12 @@ $("#filter").attr({"name" : "status_id"});
         <td>
             {{description}}
         </td>
-        <td>
-            {{category}}
-        </td>
-         <td>
-            {{status}}
-        </td>
     </tr>
     {{else}}
       {{/each}}
-
-      {{else}}
-          <p>Invalid search,try a different category or search keyword</p>
-
-          {{/if}}
-
-
 </table>
 
  </div>
- <div class="col-sm-2"></div>
 </div>
-
-
-
 </body>
 </html>

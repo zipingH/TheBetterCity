@@ -7,28 +7,32 @@ var fs = require('fs');
 const router = express.Router()
 
 router.get('/', (req, res) =>{
-  console.log("--Inside Main--");
-  res.render('Home');
+  var queryRecent = 'SELECT * FROM csc648_db.issue order by time_stamp desc limit 4;'
+  db.query(queryRecent, (err, results)=>{
+      if (err) {
+        return res.status(400).send({
+            err
+        });
+    } else {
+      console.log("--Inside Main--");
+      res.render('Home',{ 'session': req.session ? req.session : '', 'recentIssues' : results});
+    }
+  })
 });
 
 router.get('/submitIssue', (req, res) =>{
   console.log("--Inside submitIssue--");
-  res.render('submitIssue');
-});
-
-router.get('/showDetail', (req, res) =>{
-  console.log("--Inside showDetail--");
-  res.render('showDetail');
+  res.render('submitIssue',{ 'session': req.session ? req.session : ''});
 });
 
 router.get('/contact', (req, res) =>{
   console.log("--Inside contact--");
-  res.render('contact');
+  res.render('contact',{ 'session': req.session ? req.session : ''});
 });
 
 router.get('/aboutUs', (req, res) =>{
   console.log("--Inside aboutUs--");
-  res.render('aboutUs');
+  res.render('aboutUs',{ 'session': req.session ? req.session : ''});
 });
 
 module.exports = router;

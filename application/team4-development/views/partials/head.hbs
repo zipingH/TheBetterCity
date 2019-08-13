@@ -43,12 +43,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-144899618-1');
     $(document).ready(function(){
       debugger;
@@ -60,7 +58,6 @@
       var from = '{{from}}';
       var to = '{{to}}';
       var total = '{{total}}';
-
       $('a#nextBtn').click(function() {
         debugger;
         if(to == total) {
@@ -79,7 +76,7 @@
         pageNo = pageNo - 1;
         window.location.href = '/dropdown?category_id=' + category_id + '&title=' + title + '&pageNo=' + pageNo;
       });
-
     });
   </script>
 </head>
+© 2019 GitHub, Inc.
