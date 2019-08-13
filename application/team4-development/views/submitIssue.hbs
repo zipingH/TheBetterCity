@@ -36,6 +36,7 @@
   <script type="text/javascript" src="js/sessionStorage.js"></script>
   <script type="text/javascript" src="js/filterOption.js"></script>
   <script type="text/javascript" src="js/pagination.js"></script>
+    <script type="text/javascript" src="js/checkLogInStatus.js"></script>
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 
@@ -69,7 +70,6 @@ $('#hiUser').hide();
                      $('#hiUser').show();
                      $("[data-target='#loginModal']").hide();
                       $('#logout').show();
-
                   }
 
                  });
@@ -171,7 +171,7 @@ $('#hiUser').hide();
                     </div>
                     <div class="col-md-4">
                   <label for="validationServer05">Zip  <font color="red">*</font></label>
-                  <input type="text"  class="form-control" id="zip" name ="zip" placeholder="Zip" pattern = "[0-9]{5}" maxlength="50" oninvalid="setCustomValidity('Please enter a 5 digit zip code')" oninput="setCustomValidity('')" required>
+                  <input type="text"  class="form-control" id="zip" name ="zip" placeholder="Zip" pattern = "[0-9]{5}" maxlength="50"  oninvalid="setCustomValidity('Please enter a 5 digit zip code')" oninput="setCustomValidity('')" required>
                     </div>
             </div>
           </div>
@@ -196,7 +196,7 @@ $('#hiUser').hide();
           </div>
 
           <div class="form-group">
-            <button type="submit" class="form-control" name="button">Submit</button>
+            <button id="postIssue" type="button" class="form-control" name="button">Submit</button>
           </div>
         </form>
       </div>

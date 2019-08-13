@@ -162,11 +162,7 @@ $('#hiUser').hide();
                   <p class="card-text">{{description}}</p>
                   {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
                   {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
-                  <form method="get" action="/showDetail" class="inline">
-  <button type="submit" name="issue_id" value="{{issue_id}}" class="link-button">
-    Show Details
-  </button>
-</form>
+          <a href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right" >Show Details</a>
                 </div>
               </div>
             </div>
