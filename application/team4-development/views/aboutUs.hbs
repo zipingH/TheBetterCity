@@ -50,27 +50,7 @@
     gtag('config', 'UA-144899618-1');
 
   </script>
-  <script>
-            var loggedInId = '';
-            var loggedInName = '';
-            $(document).ready(function() {
-                loggedInId = '{{session.user.id}}';
-                loggedInName = '{{session.user.name}}';
-$('#logout').hide();
-$('#hiUser').hide();
 
-
-
-                   if(loggedInName!=''){
-                     $('#hiUser').show();
-                     $("[data-target='#loginModal']").hide();
-                      $('#logout').show();
-
-                  }
-
-                 });
-
-</script>
 </head>
 
 <body>

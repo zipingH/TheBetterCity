@@ -24,7 +24,7 @@ router.post('/login' , (req, res) =>{
   console.log("--Inside login --");
   var email = req.body.email;
     var password = req.body.password;
-    console.log('Email:' + email +'Password:' + password);
+      console.log('Email:' + email +'Password:' + password );
     const queryString = "select * from user where email = ?";
 
     db.query(queryString, [email], (err, results) => {
@@ -55,7 +55,7 @@ router.post('/login' , (req, res) =>{
                   console.log('Password doesnt match ');
                   console.log(userDetail.password);
                   console.log(password);
-                  res.redirect('home');
+                  res.render('/');
                 }
               });
           }

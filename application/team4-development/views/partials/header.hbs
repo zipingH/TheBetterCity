@@ -5,6 +5,30 @@
 //  Copyright © CSC-648/848 Team 04. All rights reserved.
 -->
 
+<script>
+          var loggedInId = '';
+          var loggedInName = '';
+          $(document).ready(function() {
+
+              loggedInId = '{{session.user.id}}';
+              loggedInName = '{{session.user.name}}';
+$('#logout').hide();
+$('#hiUser').hide();
+
+
+
+
+                 if(loggedInName!=''){
+                   $('#hiUser').show();
+                   $("[data-target='#loginModal']").hide();
+                    $('#logout').show();
+
+                }
+
+               });
+
+</script>
+
 <!--================ Start header Top Area =================-->
 <section class="header-top">
   <div class="container">
@@ -58,6 +82,9 @@
                             <div class="form-group">
                                 <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
                               </div>
+                              <div class="form-group">
+                                  <input id="currentURL" type="hidden" class="form-control"  name="currentURL"  required>
+                                </div>
                                 <div class="form-group">
                                 <button id="login_submit">Log in</button>
                             </div>
@@ -140,6 +167,9 @@
     </div>
   </div>
 </div>
+
+
+<!-- captcha script -->
 <script type="text/javascript">
   $('#signUpClick').on('click', function() {
     createCaptcha();
