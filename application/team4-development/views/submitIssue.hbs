@@ -112,7 +112,7 @@ $('#hiUser').hide();
   <section class="d-flex justify-content-center">
     <h3>Submit Issue</h3>
   </section>
-
+  <p class="container w-50" style="text-align: left"><font color="red">* These fields are required.</font></p>
   <!-- Submit issue section -->
   <section class="d-flex justify-content-center">
     <div class="container w-50">
@@ -126,6 +126,7 @@ $('#hiUser').hide();
           <div class="form-group">
             <label for="location">location <font color="red">*</font></label>
             <select class="form-control" name="location" required>
+              <option value="" selected="selected">Select a Park or Location</option>
               <option name="Golden Gate Park" value="Golden Gate Park">Golden Gate Park</option>
               <option name="Mission Dolores Park" value="Mission Dolores Park">Mission Dolores Park</option>
               <option name="Grandview Park" value="Grandview Park">Grandview Park</option>
@@ -137,6 +138,7 @@ $('#hiUser').hide();
           <div class="form-group">
             <label for="category">Category <font color="red">*</font></label>
             <select class="form-control" name="category" required>
+              <option value="" selected="selected">Select a Category</option>
               <option name="Litter" value="Litter">Litter</option>
               <option name="Water Polution" value="Water Polution">Water Polution</option>
               <option name="Bio-Hazards" value="Bio-Hazards">Bio-Hazards</option>
@@ -149,8 +151,8 @@ $('#hiUser').hide();
             <input type="file" class="form-control-file" name="photo" id="photo">
           </div>
           <div class="form-group">
-            <label for="description">Description<font color="red">*</font></label>
-            <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+            <label for="description">Description (300 Characters Max) <font color="red">*</font></label>
+            <textarea class="form-control" rows="3" name="description" id="description" maxlength="300" required></textarea>
           </div>
 
           <div class="form-group">
