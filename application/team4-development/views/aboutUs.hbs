@@ -35,8 +35,42 @@
   <script type="text/javascript" src="js/sessionStorage.js"></script>
   <script type="text/javascript" src="js/filterOption.js"></script>
   <script type="text/javascript" src="js/pagination.js"></script>
-  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-144899618-1');
+
+  </script>
+  <script>
+            var loggedInId = '';
+            var loggedInName = '';
+            $(document).ready(function() {
+                loggedInId = '{{session.user.id}}';
+                loggedInName = '{{session.user.name}}';
+$('#logout').hide();
+$('#hiUser').hide();
+
+
+
+                   if(loggedInName!=''){
+                     $('#hiUser').show();
+                     $("[data-target='#loginModal']").hide();
+                      $('#logout').show();
+
+                  }
+
+                 });
+
+</script>
 </head>
 
 <body>
@@ -116,7 +150,7 @@
   {{> footer}}
 
 
-  
+
 </body>
 
 </html>

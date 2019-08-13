@@ -7,7 +7,9 @@ $(function () {
           else {
             alert("Please log in to submit the issue")
           }
-
+          $("#postIssue").submit(function(){
+              alert("Issue submitted successfully.Thank you! ");
+            });
 
           });
         });

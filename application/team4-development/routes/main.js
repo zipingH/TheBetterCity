@@ -22,17 +22,17 @@ router.get('/', (req, res) =>{
 
 router.get('/submitIssue', (req, res) =>{
   console.log("--Inside submitIssue--");
-  res.render('submitIssue');
+  res.render('submitIssue',{ 'session': req.session ? req.session : ''});
 });
 
 router.get('/contact', (req, res) =>{
   console.log("--Inside contact--");
-  res.render('contact');
+  res.render('contact',{ 'session': req.session ? req.session : ''});
 });
 
 router.get('/aboutUs', (req, res) =>{
   console.log("--Inside aboutUs--");
-  res.render('aboutUs');
+  res.render('aboutUs',{ 'session': req.session ? req.session : ''});
 });
 
 module.exports = router;
