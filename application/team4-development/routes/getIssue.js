@@ -66,8 +66,8 @@ router.get('/dropdown', (req, res) => {
           'pageNo': pageNo,
           'from': displayed + 1,
           'to': displaying,
-          'total': length
-        });
+          'total': length,
+         'session': req.session ? req.session : ''});
       }
     })
   } else if (category_id > 0 || category_id < 6) {
@@ -89,8 +89,8 @@ router.get('/dropdown', (req, res) => {
           'pageNo': pageNo,
           'from': displayed + 1,
           'to': displaying,
-          'total': length
-        });
+          'total': length,
+        'session': req.session ? req.session : ''});
       }
     })
   }
@@ -115,8 +115,8 @@ router.get('/dropdown', (req, res) => {
           'pageNo': pageNo,
           'from': displayed + 1,
           'to': displaying,
-          'total': length
-        });
+          'total': length,
+           'session': req.session ? req.session : ''});
       }
     })
   }
@@ -139,8 +139,8 @@ router.get('/dropdown', (req, res) => {
           'pageNo': pageNo,
           'from': displayed + 1,
           'to': displaying,
-          'total': length
-        });
+          'total': length,
+        'session': req.session ? req.session : ''});
       }
     })
   }
