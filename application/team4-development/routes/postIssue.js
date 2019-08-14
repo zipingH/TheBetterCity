@@ -13,6 +13,16 @@ var path = require('path');
 const multer = require("multer");
 
 
+
+//to check for empty object on error handling
+Object.prototype.isEmpty = function () {
+    for (var key in this) {
+        if (this.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
 //set storage engine for photo
 const storage = multer.diskStorage({
     destination: './public/IssueImages/',
@@ -56,10 +66,10 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
         console.log('Photo has added with filename');
     }
     var location = req.body.location;
-    var other = req.body.other;
-    if(other != null){
-    location = other;
+    if (location == "Other") {
+        location = req.body.other;
     }
+    
     var description = req.body.description;
     var category = req.body.category;
     //email needs to be changed to the email of the user that is logged in
@@ -70,17 +80,17 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
     var dateTime = date + ' ' + time;
     const query_postIssue = "INSERT INTO issue(issue_id, title, photo, location, description, status_id, user_id, time_stamp, category_id) VALUES (@issue_id, ? , concat('../IssueImages/', ? ), ? , ? , '6',(SELECT id FROM user where email = ? ), ? , (SELECT category_id FROM category WHERE category = ? ));"
 
-    db.query(query_postIssue, [title, photo, location, description, email, dateTime, category], (err, result) => {
+    db.query(query_postIssue, [title, photo, location, description, email, dateTime, category], (err, results) => {
 
         if (err) {
             message = "Failed to submit issue: " + err;
             console.log(message);
-             res.redirect('/')
+            res.redirect('/')
         } else {
             message = "Successfully submit issue";
             console.log(message);
             console.log('Body: ', req.body);
-             res.redirect('/')
+            res.redirect('/')
         }
     });
 });

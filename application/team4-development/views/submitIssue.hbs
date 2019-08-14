@@ -44,12 +44,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-144899618-1');
   </script>
 
@@ -61,16 +59,11 @@
       loggedInName = '{{session.user.name}}';
       $('#logout').hide();
       $('#hiUser').hide();
-
-
-
       if (loggedInName != '') {
         $('#hiUser').show();
         $("[data-target='#loginModal']").hide();
         $('#logout').show();
-
       }
-
       $('#locationDropdown').on('change', function(value) {
         if(this.value == 'Other') {
           $('#otherLocation').show();
@@ -133,7 +126,7 @@
 
           <div class="form-group">
             <label for="location">location <font color="red">*</font></label>
-            <select class="form-control" name="location" required id="locationDropdown">
+            <select class="form-control" name="location" id="locationDropdown" required>
               <option value="" selected="selected">Select a Park or Location</option>
               <option name="Golden Gate Park" value="Golden Gate Park">Golden Gate Park</option>
               <option name="Mission Dolores Park" value="Mission Dolores Park">Mission Dolores Park</option>
@@ -145,7 +138,7 @@
 
           <div class="form-group" id="otherLocation" style="display:none">
             <label for="location"></label>
-            <input class="form-control" type="text" name="other" placeholder="Specify other location" maxlength="50" required>
+            <input class="form-control" type="text" name="other" placeholder="Specify other location" maxlength="50">
           </div>
 
           <div class="form-group">
@@ -153,7 +146,7 @@
             <select class="form-control" name="category" required>
               <option value="" selected="selected">Select a Category</option>
               <option name="Litter" value="Litter">Litter</option>
-              <option name="Water Polution" value="Water Polution">Water Polution</option>
+              <option name="Water Pollution" value="Water Pollution">Water Pollution</option>
               <option name="Bio-Hazards" value="Bio-Hazards">Bio-Hazards</option>
               <option name="Broken City Property" value="Broken City Property">Broken City Property</option>
               <option name="Other" value="Other">Other</option>
@@ -164,9 +157,8 @@
             <input type="file" class="form-control-file" name="photo" id="photo">
           </div>
           <div class="form-group">
-            <label for="description">Description (300 Characters Max) <font color="red">*</font></label>
-            <textarea class="form-control" rows="3" name="description" id="description" maxlength="300"
-              required></textarea>
+            <label for="description">Description (300 Characters Max)</label>
+            <textarea class="form-control" rows="3" name="description" id="description" maxlength="300"></textarea>
           </div>
 
           <div class="form-group">
