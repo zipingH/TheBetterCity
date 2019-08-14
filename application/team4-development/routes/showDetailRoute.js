@@ -36,7 +36,7 @@ router.get('/showDetail', (req, res) => {
             });
         } else {
           console.log(results);
-            res.render('showDetail', { 'details': results });
+            res.render('showDetail', { 'details': results ,'session': req.session ? req.session : ''});
     }
 });
 });

@@ -54,32 +54,31 @@
   </script>
 
   <script>
-            var loggedInId = '';
-            var loggedInName = '';
-            $(document).ready(function() {
-                loggedInId = '{{session.user.id}}';
-                loggedInName = '{{session.user.name}}';
-$('#logout').hide();
-$('#hiUser').hide();
+    var loggedInId = '';
+    var loggedInName = '';
+    $(document).ready(function () {
+      loggedInId = '{{session.user.id}}';
+      loggedInName = '{{session.user.name}}';
+      $('#logout').hide();
+      $('#hiUser').hide();
 
 
 
-                   if(loggedInName!=''){
-                     $('#hiUser').show();
-                     $("[data-target='#loginModal']").hide();
-                      $('#logout').show();
+      if (loggedInName != '') {
+        $('#hiUser').show();
+        $("[data-target='#loginModal']").hide();
+        $('#logout').show();
 
-                  }
+      }
 
-                 });
+    });
 
-</script>
+  </script>
 
 
 </head>
 
 <body>
-
   {{> header}}
 
   {{> search}}
@@ -87,9 +86,10 @@ $('#hiUser').hide();
   <!-- Start header Menu Area -->
   <header class="header_area">
     <div class="main_menu">
-      <<nav class="navbar navbar-expand-lg navbar-light" style="height:7%">
+      <nav class="navbar navbar-expand-lg navbar-light" style="height:7%">
         <div class="container" style="border-bottom:1px solid lightgray;height:70%">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -107,12 +107,13 @@ $('#hiUser').hide();
     </div>
   </header>
 
-
   <!-- Title of page -->
   <section class="d-flex justify-content-center">
     <h3>Submit Issue</h3>
   </section>
-  <p class="container w-50" style="text-align: left"><font color="red">* These fields are required.</font></p>
+  <p class="container w-50" style="text-align: left">
+    <font color="red">* These fields are required.</font>
+  </p>
   <!-- Submit issue section -->
   <section class="d-flex justify-content-center">
     <div class="container w-50">
@@ -120,7 +121,8 @@ $('#hiUser').hide();
         <form class="form w-100" action="/postIssue" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="title">Title <font color="red">*</font></label>
-            <input type="text" class="form-control" name="title" id="title" placeholder="Title" maxlength="50" pattern="^[0-9a-zA-Z.-\s]*" required>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title" maxlength="50"
+              pattern="^[0-9a-zA-Z.-\s]*" required>
           </div>
 
           <div class="form-group">
@@ -152,7 +154,8 @@ $('#hiUser').hide();
           </div>
           <div class="form-group">
             <label for="description">Description (300 Characters Max) <font color="red">*</font></label>
-            <textarea class="form-control" rows="3" name="description" id="description" maxlength="300" required></textarea>
+            <textarea class="form-control" rows="3" name="description" id="description" maxlength="300"
+              required></textarea>
           </div>
 
           <div class="form-group">

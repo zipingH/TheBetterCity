@@ -77,7 +77,6 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
             console.log(message);
             console.log('Body: ', req.body);
              res.redirect('/')
-
         }
     });
 });
