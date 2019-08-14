@@ -71,20 +71,16 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
         if (err) {
             message = "Failed to submit issue: " + err;
             console.log(message);
-            return res.status(400).send({
-                message: message
-            });
+             res.redirect('/')
         } else {
             message = "Successfully submit issue";
             console.log(message);
             console.log('Body: ', req.body);
-            return res.status(200).send({
-                message: message,
-            });
+             res.redirect('/')
 
         }
-    })
-})
+    });
+});
 
 
 

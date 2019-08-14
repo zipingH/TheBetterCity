@@ -37,14 +37,14 @@ router.post('/login' , (req, res) =>{
             const userDetail = results[0];
             if (!userDetail) {
                 console.log('Email not found in DB');
-                res.render('home');
+              res.redirect('/');
             }
             //compares hashed password
             else if (email == userDetail.email){
               bcrypt.compare(password, userDetail.password, function(err, result) {
                 if (result == true) {
                   req.session.user = userDetail;
-                  res.render('home',{session: req.session});
+                  res.redirect('/');
                     console.log("--login successful  --");
                     console.log('session:' + req.session);
                     console.log('  req.session.user :' + req.session.user);
@@ -55,7 +55,7 @@ router.post('/login' , (req, res) =>{
                   console.log('Password doesnt match ');
                   console.log(userDetail.password);
                   console.log(password);
-                  res.render('/');
+                  res.redirect('/');
                 }
               });
           }
@@ -65,7 +65,7 @@ router.post('/login' , (req, res) =>{
 
 //route for login
 router.post('/reset' , (req, res) =>{
-  res.render('Home');
+res.redirect('/');
 });
 
   //route for signup/register
@@ -85,7 +85,7 @@ router.post('/reset' , (req, res) =>{
                 err
             });
         } else {
-            res.render('Home');
+            res.redirect('/');
         }
     });
   });
@@ -98,7 +98,7 @@ router.post('/reset' , (req, res) =>{
     req.session.destroy(function() {
         console.log("user logged out.")
     });
-    res.render('Home');
+    res.redirect('/');
   });
 
 
