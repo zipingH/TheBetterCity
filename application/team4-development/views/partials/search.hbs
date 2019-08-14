@@ -24,7 +24,7 @@
             </optgroup>
           </select>
           <input id="search" type="text" name="location" placeholder="search by park name or location..."
-            class="form-control" value="" style="width:74%">
+            maxlength="50" pattern="^[0-9a-zA-Z\s]*" oninvalid="setCustomValidity('Please enter alphanumeric charecters only ')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" value="" style="width:74%">
           <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
         </div>
       </form>
