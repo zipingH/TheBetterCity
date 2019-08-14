@@ -12,7 +12,7 @@ const db = require('../config/db.conf.js');
 var path = require('path');
 var fs = require('fs');
 var session = '';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const { check, validationResult } = require('express-validator');
 
