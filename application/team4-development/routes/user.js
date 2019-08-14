@@ -66,16 +66,19 @@ router.post('/login' , (req, res) =>{
 
 //route for login
 router.post('/reset' , (req, res) =>{
-res.redirect('/');
+
+    var path=req.body.currentURLResetPwd;
+    console.log(path)
+res.redirect(path);
 });
 
   //route for signup/register
   router.post('/register' , (req, res) =>{
 
-
+  var path=req.body.currentURLSignUp;
     console.log("inside register");
     console.log('name:' + req.body.name);
-    console.log('email:' +req.body.email);
+    console.log('email:' +req.body.email  + path);
     //hash password
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
       const queryString = "INSERT INTO user (name, email, password, role) VALUES (?, ?, ?, 'user')";
@@ -86,7 +89,7 @@ res.redirect('/');
                 err
             });
         } else {
-            res.redirect('/');
+          res.redirect(path);
         }
     });
   });
@@ -96,6 +99,7 @@ res.redirect('/');
 
   //route for logout
   router.get('/logout' , (req, res) =>{
+
     req.session.destroy(function() {
         console.log("user logged out.")
     });

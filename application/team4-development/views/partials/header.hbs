@@ -6,29 +6,47 @@
 -->
 
 <script>
-          var loggedInId = '';
-          var loggedInName = '';
-          $(document).ready(function() {
+  var loggedInId = '';
+  var loggedInName = '';
+  $(document).ready(function() {
 
-              loggedInId = '{{session.user.id}}';
-              loggedInName = '{{session.user.name}}';
-$('#logout').hide();
-$('#hiUser').hide();
-var path=$(location).attr('pathname');
+    loggedInId = '{{session.user.id}}';
+    loggedInName = '{{session.user.name}}';
+    $('#logout').hide();
+    $('#hiUser').hide();
+    var path = $(location).attr('pathname');
 
 
 
-                 if(loggedInName!=''){
-                   $('#hiUser').show();
-                   $("[data-target='#loginModal']").hide();
-                    $('#logout').show();
+    if (loggedInName != '') {
+      $('#hiUser').show();
+      $("[data-target='#loginModal']").hide();
+      $('#logout').show();
 
-                }
-  $("#login_submit").click(function(){
-                  $("#currentURL").attr({"value" : path});
-                  
-               });
-             });
+    }
+    $("#login_submit").click(function() {
+      $("#currentURL").attr({
+        "value": path
+      });
+
+    });
+
+    $("#resetPwd").click(function() {
+      $("#currentURLResetPwd").attr({
+        "value": path
+      });
+
+    });
+
+    $("#register_submit").click(function() {
+      $("#currentURLSignUp").attr({
+        "value": path
+      });
+
+    });
+
+
+    });
 
 </script>
 
@@ -47,9 +65,13 @@ var path=$(location).attr('pathname');
       <div class="col-lg-3 col-md-4 col-sm-4 search-trigger d-flex justify-content-center">
         <div class="right-button">
           <ul>
-              <li><div id="hiUser"><p>Hi {{session.user.name}} !</p></div></li>
-          <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login / Sign Up</a></li>
-            <li><a id="logout" class="" href="/logout" value="Log out">Log out</a></li>
+            <li>
+              <div id="hiUser">
+                <p>Hi {{session.user.name}} !</p>
+              </div>
+            </li>
+            <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login / Sign Up</a></li>
+            <li><a id="logout" class="" href="/logout">Log out</a></li>
           </ul>
         </div>
       </div>
@@ -78,20 +100,20 @@ var path=$(location).attr('pathname');
       </div>
       <div class="modal-body">
 
-          <form class="login-input" action="login" method="POST">
-                            <div class="form-group">
-                                <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
-                              </div>
-                              <div class="form-group">
-                                  <input id="currentURL" type="hidden" class="form-control"  name="currentURL"  required>
-                                </div>
-                                <div class="form-group">
-                                <button id="login_submit">Log in</button>
-                            </div>
-                        </form>
+        <form class="login-input" action="login" method="POST">
+          <div class="form-group">
+            <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
+          </div>
+          <div class="form-group">
+            <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+          </div>
+          <div class="form-group">
+            <input id="currentURL" type="hidden" class="form-control" name="currentURL" required>
+          </div>
+          <div class="form-group">
+            <button id="login_submit">Log in</button>
+          </div>
+        </form>
 
         <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
         <p class="mt-1 login-form__footer"><a href="#" id="signUpClick" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
@@ -112,17 +134,20 @@ var path=$(location).attr('pathname');
         </button>
       </div>
       <div class="modal-body">
-        <form class="login-input" action="/reset" method="post" >
+        <form class="login-input" action="/reset" method="post">
           <div class="form-group">
             <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
           </div>
-        <div class="form-group">
-        <input type="submit" value="Reset Password" >
+          <div class="form-group">
+            <input id="currentURLResetPwd" type="hidden" class="form-control" name="currentURLResetPwd" required>
+          </div>
+          <div class="form-group">
+            <button id="resetPwd" type="submit" >Reset Password</button>
+          </div>
+        </form>
       </div>
-</form>
     </div>
   </div>
-</div>
 </div>
 
 <!-- SignUp Modal -->
@@ -148,13 +173,14 @@ var path=$(location).attr('pathname');
           </div>
           <div class="form-group">
             <input type="password" class="form-control" name="password2" id="password2" placeholder="Re-type Password *" maxlength="50" onfocus="validatePassword(document.getElementById('password1'), this);"
-                    oninput="validatePassword(document.getElementById('password1'), this);" required>
+              oninput="validatePassword(document.getElementById('password1'), this);" required>
           </div>
           <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
               <label class="form-check-label" for="defaultCheck1">
-              By signing up with us, you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a><font color="red">*</font>
+                By signing up with us, you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a>
+                <font color="red">*</font>
               </label>
             </div>
           </div>
@@ -164,6 +190,9 @@ var path=$(location).attr('pathname');
           <div class="form-group">
             <input type="text" class="form-control" id="cpatchaTextBox" placeholder="Enter Captcha" required>
           </div>
+          <div class="form-group">
+            <input id="currentURLSignUp" type="hidden" class="form-control" name="currentURLSignUp" required>
+          </div>
           <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
         </form>
       </div>
@@ -172,16 +201,16 @@ var path=$(location).attr('pathname');
   </div>
 </div>
 
-  <script>
-    //check if the password fields are the same
-    function validatePassword(password1, password2) {
-  if (password1.value != password2.value || password1.value == '' || password2.value == '') {
-   password2.setCustomValidity('Password does not match!');
-} else {
-   password2.setCustomValidity('');
+<script>
+  //check if the password fields are the same
+  function validatePassword(password1, password2) {
+    if (password1.value != password2.value || password1.value == '' || password2.value == '') {
+      password2.setCustomValidity('Password does not match!');
+    } else {
+      password2.setCustomValidity('');
     }
   }
-  </script>
+</script>
 
 <!-- captcha script -->
 <script type="text/javascript">
