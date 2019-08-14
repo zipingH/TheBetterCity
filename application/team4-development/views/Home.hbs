@@ -211,15 +211,17 @@
 
     <!-- No Results found -->
     {{#equal parks.length 0 }}
-    <section>
-      <div class="container">
-        <p class="text-center">No records found for current search, try a different category or search keyword</p>
-      </div>
-    </section>
+    <section class="d-flex align-items-center" style="height:50%">
+            <div class="container">
+              <p class="text-center">No records found for current search, try a different category or search keyword</p>
+            </div>
+          </section>
     {{/equal}}
 
+{{/if}}
 
-    <!--  when nothing is serached or when no search result is found  -->
+{{#if recentIssues }}
+    <!--  when nothing is serached  -->
     <section>
       <h5 class="d-flex justify-content-center">Recent Issues</h5>
       <div class="container">
