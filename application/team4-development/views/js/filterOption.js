@@ -12,8 +12,8 @@ $(function () {
                $("#filter").attr({"name" : "status_id"});
           }
           if(filterSel > 8){
-            $("#filter").attr({"name" : "null"});
-            $("#search").attr({"name" : "location"});
+            $("#filter").attr({"name" : "search"});
+            $("#search").attr({"name" : "title"});
           }
           });
         });

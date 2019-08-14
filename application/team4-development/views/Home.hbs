@@ -49,28 +49,36 @@
     gtag('js', new Date());
     gtag('config', 'UA-144899618-1');
 
-</script>
-<script>
+  </script>
+  <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       var search_params = new URLSearchParams(document.location.search);
       var category_id = search_params.get('category_id');
       var status_id = search_params.get('status_id');
+      var location = search_params.get('location');
       var title = search_params.get('title');
       var pageNo = search_params.get('pageNo') ? parseInt(search_params.get('pageNo')) : 0;
       var from = '{{from}}';
       var to = '{{to}}';
       var total = '{{total}}';
+      var search = search_params.get('search');
+      var nine = 9;
 
       var queryString = '/dropdown?';
-      if(category_id == null && status_id > 5) {
-        queryString = queryString + 'status_id=' + status_id;
-      } else {
-        queryString = queryString + 'category_id=' + category_id;
-      }
-      queryString = queryString + '&title=' + title;
 
-      $('a#nextBtn').click(function() {
+      if (category_id == null && status_id > 5) {
+        queryString = queryString + 'status_id=' + status_id + '&location=' + location;
+      }
+      else if (search == nine) {
+        queryString = queryString + 'search=' + nine + '&title=' + title;
+      }
+      else {
+        queryString = queryString + 'category_id=' + category_id + '&location=' + location;
+      }
+
+
+      $('a#nextBtn').click(function () {
         if (to == total) {
           alert('No next records.')
           return;
@@ -78,7 +86,7 @@
         pageNo = pageNo + 1;
         window.location.href = queryString + '&pageNo=' + pageNo;
       });
-      $('a#prevBtn').click(function() {
+      $('a#prevBtn').click(function () {
         if (from == 1) {
           alert('No previous records.')
           return;
@@ -102,7 +110,8 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light" style="height:7%">
         <div class="container" style="border-bottom:1px solid lightgray;height:70%">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -127,124 +136,126 @@
     <!-- searcch list  area-->
 
     {{#if parks }}
-      <!-- Title of page -->
-      <section class="d-flex justify-content-center">
-        <h4>Search Page</h4>
-      </section>
-      <section style="min-height:50%">
+    <!-- Title of page -->
+    <section class="d-flex justify-content-center">
+      <h4>Search Page</h4>
+    </section>
+    <section style="min-height:50%">
+      <div class="container">
+        <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
+        {{#each parks}}
         <div class="container">
-          <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
-          {{#each parks}}
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-1">
+          <div class="row">
+            <div class="col-sm-1">
 
+            </div>
+            <div class="col-sm-10 d-flex justify-content-center">
+              <div class="card w-75 m-3">
+                <div class="card-header">
+                  {{title}}
                 </div>
-                <div class="col-sm-10 d-flex justify-content-center">
-                  <div class="card w-75 m-3">
-                    <div class="card-header">
-                      {{title}}
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-ìnline d-flex justify-content-between">
-                        <!-- <li class="list-inline-item">
+                <div class="card-body">
+                  <ul class="list-ìnline d-flex justify-content-between">
+                    <!-- <li class="list-inline-item">
                         <h6>Date: <b>{{date}}</b></h6>
                       </li> -->
-                        <li class="list-inline-item">
-                          <h6>Location: <b>{{location}}</b></h6>
-                        </li>
-                        <li class="list-inline-item">
-                          <h6>Category: <b>{{category}}</b></h6>
-                        </li>
-                        <li class="list-inline-item">
-                          <h6>Status: <b>{{status}}</b></h6>
-                        </li>
-                      </ul>
-                      <h6 class="card-title">Description</h6>
-                      <p class="card-text">{{description}}</p>
-                      {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
-                      {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
-                      <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right" >Show Details</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-1">
-
+                    <li class="list-inline-item">
+                      <h6>Location: <b>{{location}}</b></h6>
+                    </li>
+                    <li class="list-inline-item">
+                      <h6>Category: <b>{{category}}</b></h6>
+                    </li>
+                    <li class="list-inline-item">
+                      <h6>Status: <b>{{status}}</b></h6>
+                    </li>
+                  </ul>
+                  <h6 class="card-title">Description</h6>
+                  <p class="card-text">{{description}}</p>
+                  {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
+                  {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                  <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}"
+                    class="btn btn-primary btn-sm float-sm-right">Show Details</a>
                 </div>
               </div>
             </div>
-          {{/each}}
+            <div class="col-sm-1">
 
-      </section>
-
-
-      <!-- Pagination -->
-      <section>
-        <div class="container">
-          <div class="row d-flex justify-content-center">
-            <div class="layui-box layui-laypage layui-laypage-molv">
-              <a class="btn" data-page="2" id="prevBtn">Previous</a>
-              <a class="btn" data-page="2" id="nextBtn">Next</a>
             </div>
           </div>
         </div>
-      </section>
+        {{/each}}
+
+    </section>
+
+
+    <!-- Pagination -->
+    <section>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="layui-box layui-laypage layui-laypage-molv">
+            <a class="btn" data-page="2" id="prevBtn">Previous</a>
+            <a class="btn" data-page="2" id="nextBtn">Next</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     {{else}}
 
 
 
-      <!-- Title of page -->
-      <section class="d-flex justify-content-center">
-        <h3>Home Page</h3>
-      </section>
+    <!-- Title of page -->
+    <section class="d-flex justify-content-center">
+      <h3>Home Page</h3>
+    </section>
 
-      <!-- No Results found -->
-      {{#equal parks.length 0 }}
-        <section>
-          <div class="container">
-            <p class="text-center">No records found for current search, try a different category or search keyword</p>
-          </div>
-        </section>
-      {{/equal}}
+    <!-- No Results found -->
+    {{#equal parks.length 0 }}
+    <section>
+      <div class="container">
+        <p class="text-center">No records found for current search, try a different category or search keyword</p>
+      </div>
+    </section>
+    {{/equal}}
 
 
-      <!--  when nothing is serached or when no search result is found  -->
-      <section>
-          <h5 class="d-flex justify-content-center">Recent Issues</h5>
-        <div class="container">
-          <div class="row">
-            {{#each recentIssues}}
+    <!--  when nothing is serached or when no search result is found  -->
+    <section>
+      <h5 class="d-flex justify-content-center">Recent Issues</h5>
+      <div class="container">
+        <div class="row">
+          {{#each recentIssues}}
 
-              <div class="col-lg-6 col-sm-12" style="margin-top:15px">
-                <div class="card">
-                  <div class="card-header">
-                    {{title}}
-                  </div>
-                  <div class="card-body">
-                    <ul class="list-ìnline d-flex justify-content-between">
-                      <!-- <li class="list-inline-item">
+          <div class="col-lg-6 col-sm-12" style="margin-top:15px">
+            <div class="card">
+              <div class="card-header">
+                {{title}}
+              </div>
+              <div class="card-body">
+                <ul class="list-ìnline d-flex justify-content-between">
+                  <!-- <li class="list-inline-item">
                       <h6>Date: <b>{{date}}</b></h6>
                     </li> -->
-                      <li class="list-inline-item">
-                        <h6>Location: <b>{{location}}</b></h6>
-                      </li>
-                    </ul>
-                    <h6 class="card-title">Description</h6>
-                    <div class="card-text col-12 text-truncate">{{description}}</div>
-                    <!-- Show details opens in new tab -->
-                    <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+                  <li class="list-inline-item">
+                    <h6>Location: <b>{{location}}</b></h6>
+                  </li>
+                </ul>
+                <h6 class="card-title">Description</h6>
+                <div class="card-text col-12 text-truncate">{{description}}</div>
+                <!-- Show details opens in new tab -->
+                <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}"
+                  class="btn btn-primary btn-sm float-sm-right">Show Details</a>
 
-                    {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
-                  </div>
-                </div>
+                {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
               </div>
-            {{/each}}
-
-
             </div>
+          </div>
+          {{/each}}
+
+
         </div>
-      </section>
+      </div>
+    </section>
 
 
     {{/if}}

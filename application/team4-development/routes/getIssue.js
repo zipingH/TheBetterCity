@@ -38,16 +38,16 @@ router.get('/dropdown', (req, res) => {
   var startIndex = 0;
   var endIndex = 3;
 
-  const query_percentLikeByTitle = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+  const query_percentLikeByLocation = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   //const queryFilter = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   //const querySearch = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   //const queryString = "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   //const queryString2= "SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.status_id = status.status_id AND issue.category_id = category.category_id INTERSECT SELECT * FROM issue, status, category WHERE issue.category_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
-  const query_selectAll = "SELECT * FROM issue, status, category WHERE issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
-  const query_selectStatus = "SELECT * FROM issue, status, category WHERE  issue.status_id = ? AND issue.title LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
-  const query_location = "SELECT * FROM issue, status, category WHERE issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+  const query_selectAll = "SELECT * FROM issue, status, category WHERE issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+  const query_selectStatus = "SELECT * FROM issue, status, category WHERE issue.status_id = ? AND issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
+  const query_title = "SELECT * FROM issue, status, category WHERE issue.location LIKE concat('%', ? ,'%') AND issue.status_id = status.status_id AND issue.category_id = category.category_id;"
   if (category_id == 0) {
-    db.query(query_selectAll, [title], (err, results) => {
+    db.query(query_selectAll, [location], (err, results) => {
       if (err) {
         return res.status(400).send({
           err
@@ -67,11 +67,12 @@ router.get('/dropdown', (req, res) => {
           'from': displayed + 1,
           'to': displaying,
           'total': length,
-         'session': req.session ? req.session : ''});
+          'session': req.session ? req.session : ''
+        });
       }
     })
   } else if (category_id > 0 || category_id < 6) {
-    db.query(query_percentLikeByTitle, [category_id, title], (err, results) => {
+    db.query(query_percentLikeByLocation, [category_id, location], (err, results) => {
       if (err) {
         return res.status(400).send({
           err
@@ -90,14 +91,15 @@ router.get('/dropdown', (req, res) => {
           'from': displayed + 1,
           'to': displaying,
           'total': length,
-        'session': req.session ? req.session : ''});
+          'session': req.session ? req.session : ''
+        });
       }
     })
   }
 
   // dropdown menu route to select status if category_id is not in the database
   else if (status_id > 5) {
-    db.query(query_selectStatus, [status_id, title], (err, results) => {
+    db.query(query_selectStatus, [status_id, location], (err, results) => {
       if (err) {
         return res.status(400).send({
           err
@@ -108,7 +110,7 @@ router.get('/dropdown', (req, res) => {
         if (pageSize < length) {
           results = results.splice(displayed, pageSize);
         }
-        var displaying = length;
+        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
@@ -116,12 +118,13 @@ router.get('/dropdown', (req, res) => {
           'from': displayed + 1,
           'to': displaying,
           'total': length,
-           'session': req.session ? req.session : ''});
+          'session': req.session ? req.session : ''
+        });
       }
     })
   }
   else {
-    db.query(query_location,[location], (err, results) => {
+    db.query(query_title, [title], (err, results) => {
       if (err) {
         return res.status(400).send({
           err
@@ -129,10 +132,10 @@ router.get('/dropdown', (req, res) => {
       } else {
         var length = results.length;
         var displayed = pageNo * pageSize;
-        /*if (pageSize < length) {
-          results.splice(displayed, pageSize);
-        } */
-        var displaying = length;
+        if (pageSize < length) {
+          results = results.splice(displayed, pageSize);
+        }
+        var displaying = displayed + pageSize >= length ? length : (displayed + pageSize);
         res.render('Home', {
           'parks': results,
           'pageSize': pageSize,
@@ -140,7 +143,8 @@ router.get('/dropdown', (req, res) => {
           'from': displayed + 1,
           'to': displaying,
           'total': length,
-        'session': req.session ? req.session : ''});
+          'session': req.session ? req.session : ''
+        });
       }
     })
   }
