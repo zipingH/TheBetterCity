@@ -1,0 +1,129 @@
+<!--Contact.html
+//  CSC648-su19-Team04
+//  The Better City
+//  Created by Fengze on 7/28/19.
+//  Copyright © CSC-648/848 Team 04. All rights reserved.
+-->
+
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <title>The Better City</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/themify-icons.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/animate-css/animate.css">
+  <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+
+  <!-- main css -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pagination.css">
+  <!-- js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://github.com/yckart/jquery.storage.js"></script>
+  <script type="text/javascript" src="js/sessionStorage.js"></script>
+  <script type="text/javascript" src="js/filterOption.js"></script>
+  <script type="text/javascript" src="js/pagination.js"></script>
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+
+  {{> header}}
+
+  {{> search}}
+
+  <!-- Start header Menu Area -->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light" style="height:7%">
+        <div class="container" style="border-bottom:1px solid lightgray;height:70%">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
+              <li class="nav-item active"><a class="nav-link" href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+
+  <!-- Title of page -->
+  <section class="d-flex justify-content-center">
+    <h3>Contact Us</h3>
+  </section>
+
+  <!-- Contact Us section -->
+  <section>
+    <div class="container w-50">
+      <div class="row">
+        <div class="col-sm-6">
+          <form class="form">
+            <div class="form-group">
+              <label for="title">Name <font color="red">*</font></label>
+              <input type="text" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Email address <font color="red">*</font></label>
+              <input type="text" name="Email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="title">Contact number </label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description">Message <font color="red">*</font></label>
+              <textarea class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Send Message" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-6">
+          <div id="Layer1" class="w-100 h-100" style="margin-left:50%">
+            <img src="./img/contactus.png"/>
+          </div>
+          <br>
+          <div style="text-align: end;">
+            <h5>Office :</h5>
+            <h6>1509 Decoto Road,</h6>
+            <h6>Parkside 267,</h6>
+            <h6>Fremont, CA 98756</h6>
+            <h6>Phone : 510 668 9856</h6>
+             <h6>Email : contact@tbc.com</h6>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{{> footer}}
+
+
+  </body>
+
+  </html>

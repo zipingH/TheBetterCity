@@ -1,4 +1,10 @@
-
+/*
+  pagination.js
+  CSC648-su19-Team04
+  The Better City
+  Created by Maithri on 7/30/19.
+  Copyright © CSC-648/848 Team 04. All rights reserved.
+*/
 $(document).ready(function() {
 	var currentPage = 1;
 	var pageSize = 10;

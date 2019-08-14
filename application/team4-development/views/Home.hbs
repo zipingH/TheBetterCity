@@ -1,10 +1,10 @@
-
 <!--Home.hbs
 //  CSC648-su19-Team04
 //  The Better City
 //  Created by Soham on 7/28/19.
 //  Copyright © CSC-648/848 Team 04. All rights reserved.
 -->
+
 
 <html lang="en">
 
@@ -43,59 +43,75 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144899618-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-144899618-1');
+
   </script>
+  <script>
+
+    $(document).ready(function () {
+      var search_params = new URLSearchParams(document.location.search);
+      var category_id = search_params.get('category_id');
+      var status_id = search_params.get('status_id');
+      var location = search_params.get('location');
+      var title = search_params.get('title');
+      var pageNo = search_params.get('pageNo') ? parseInt(search_params.get('pageNo')) : 0;
+      var from = '{{from}}';
+      var to = '{{to}}';
+      var total = '{{total}}';
+      var search = search_params.get('search');
+      var nine = 9;
+
+      var queryString = '/dropdown?';
+
+      if (category_id == null && status_id > 5) {
+        queryString = queryString + 'status_id=' + status_id + '&location=' + location;
+      }
+      else if (search == nine) {
+        queryString = queryString + 'search=' + nine + '&title=' + title;
+      }
+      else {
+        queryString = queryString + 'category_id=' + category_id + '&location=' + location;
+      }
 
 
+      $('a#nextBtn').click(function () {
+        if (to == total) {
+          alert('No next records.')
+          return;
+        }
+        pageNo = pageNo + 1;
+        window.location.href = queryString + '&pageNo=' + pageNo;
+      });
+      $('a#prevBtn').click(function () {
+        if (from == 1) {
+          alert('No previous records.')
+          return;
+        }
+        pageNo = pageNo - 1;
+        window.location.href = queryString + '&pageNo=' + pageNo;
+      });
+
+    });
+  </script>
 </head>
 
 <body>
 
-  <!--================ Start header Top Area =================-->
-  <section class="header-top">
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="float-left">
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 logo-wrapper">
-          <a href="index.html" class="logo">
-            <img src="img/logo.png" alt="">
-          </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 search-trigger">
-          <div class="right-button">
-            <ul>
-              <li><a class="" href="" data-toggle="modal" data-target="#loginModal">Login</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-12">
-          <h6>We help you check the environmental issues and connect to the right authority in reporting them. Together, our passion for nature can make a difference in preserving our green space! </h6>
-        </div>
-      </div>
-    </div>
+  {{> header}}
 
-  </section>
-  <!--================ End header top Area =================-->
+  {{> search}}
 
   <!-- Start header Menu Area -->
-  <header id="header" class="header_area">
+  <header class="header_area">
     <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <nav class="navbar navbar-expand-lg navbar-light" style="height:7%">
+        <div class="container" style="border-bottom:1px solid lightgray;height:70%">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -103,10 +119,9 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="SubmitIssue.html">Submit Issues</a></li>
-              <li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li>
-              <li class="nav-item"><a class="nav-link" href="Contact.html">Contact Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="/submitIssue">Submit Issues</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -114,241 +129,143 @@
     </div>
   </header>
 
-  <!-- Title of page -->
-  <section class="d-flex justify-content-center">
-    <h3>Search Page</h3>
-  </section>
 
-  <!-- Search and Filter area -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <form class="form-inline w-100" id="tableForm" action="/dropdown" method="get">
-          <div class="col-sm-12 d-flex justify-content-center">
-            <select class="form-control" data-style="btn-info" name="category_id" id="filter">
-
-              <option name="All" value="0">All</option>
-              <optgroup label="Select Category">
-                <option name="Litter" value="1">Litter</option>
-                <option name="Water Polution" value="2">Water Polution</option>
-                <option name="Bio-Hazards" value="3">Bio-Hazards</option>
-                <option name="Broken City Property" value="4">Broken City Property</option>
-                <option name="Other" value="5">Other</option>
-              </optgroup>
-              <optgroup label="Select Status">
-                <option name="Open" value="6">Open</option>
-                <option name="In Progress" value="7">In Progress</option>
-                <option name="Resolved" value="8">Resolved</option>
-            </select>
-            <input id="search" type="text" name="title" placeholder="search by title..." class="form-control w-75" value="">
-            <button type="submit" id="searchBtn" class="form-control"><i class="fa fa-search"></i></button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
+  <main>
 
 
-  <!-- searcch list  area-->
-  <section style="min-height:50%">
+    <!-- searcch list  area-->
 
     {{#if parks }}
+    <!-- Title of page -->
+    <section class="d-flex justify-content-center">
+      <h4>Search Page</h4>
+    </section>
+    <section style="min-height:50%">
       <div class="container">
-        <p class="text-center">{{parks.length}} results found: </p>
+        <p class="text-center">Total {{total}} results found. Showing from {{from}} to {{to}} issues.</p>
         {{#each parks}}
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-1">
 
-              </div>
-              <div class="col-sm-10 d-flex justify-content-center">
-                <div class="card w-75 m-3">
-                  <div class="card-header">
-                    {{title}}
-                  </div>
-                  <div class="card-body">
-                    <ul class="list-ìnline d-flex justify-content-between">
-                      <!-- <li class="list-inline-item">
+            </div>
+            <div class="col-sm-10 d-flex justify-content-center">
+              <div class="card w-75 m-3">
+                <div class="card-header">
+                  {{title}}
+                </div>
+                <div class="card-body">
+                  <ul class="list-ìnline d-flex justify-content-between">
+                    <!-- <li class="list-inline-item">
                         <h6>Date: <b>{{date}}</b></h6>
                       </li> -->
-                      <li class="list-inline-item">
-                        <h6>Location: <b>{{location}}</b></h6>
-                      </li>
-                      <li class="list-inline-item">
-                        <h6>Category: <b>{{category}}</b></h6>
-                      </li>
-                      <li class="list-inline-item">
-                        <h6>Status: <b>{{status}}</b></h6>
-                      </li>
-                    </ul>
-                    <h6 class="card-title">Description</h6>
-                    <p class="card-text">{{description}}</p>
-                    {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
-                    <a href="ShowDetailPage.html" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
-                  </div>
+                    <li class="list-inline-item">
+                      <h6>Location: <b>{{location}}</b></h6>
+                    </li>
+                    <li class="list-inline-item">
+                      <h6>Category: <b>{{category}}</b></h6>
+                    </li>
+                    <li class="list-inline-item">
+                      <h6>Status: <b>{{status}}</b></h6>
+                    </li>
+                  </ul>
+                  <h6 class="card-title">Description</h6>
+                  <p class="card-text">{{description}}</p>
+                  {{!-- {{      <a href="#" class="btn btn-primary btn-sm float-sm-right" data-toggle="modal" data-target="#showDetails">Show Details</a>  }} --}}
+                  {{!--  <a href="{{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
+                  <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}"
+                    class="btn btn-primary btn-sm float-sm-right">Show Details</a>
                 </div>
               </div>
-              <div class="col-sm-1">
+            </div>
+            <div class="col-sm-1">
 
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+    </section>
+
+
+    <!-- Pagination -->
+    <section>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="layui-box layui-laypage layui-laypage-molv">
+            <a class="btn" data-page="2" id="prevBtn">Previous</a>
+            <a class="btn" data-page="2" id="nextBtn">Next</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{else}}
+
+
+
+    <!-- Title of page -->
+    <section class="d-flex justify-content-center">
+      <h3>Home Page</h3>
+    </section>
+
+    <!-- No Results found -->
+    {{#equal parks.length 0 }}
+    <section class="d-flex align-items-center" style="height:50%">
+            <div class="container">
+              <p class="text-center">No records found for current search, try a different category or search keyword</p>
+            </div>
+          </section>
+    {{/equal}}
+
+{{/if}}
+
+{{#if recentIssues }}
+    <!--  when nothing is serached  -->
+    <section>
+      <h5 class="d-flex justify-content-center">Recent Issues</h5>
+      <div class="container">
+        <div class="row">
+          {{#each recentIssues}}
+
+          <div class="col-lg-6 col-sm-12" style="margin-top:15px">
+            <div class="card">
+              <div class="card-header">
+                {{title}}
+              </div>
+              <div class="card-body">
+                <ul class="list-ìnline d-flex justify-content-between">
+                  <!-- <li class="list-inline-item">
+                      <h6>Date: <b>{{date}}</b></h6>
+                    </li> -->
+                  <li class="list-inline-item">
+                    <h6>Location: <b>{{location}}</b></h6>
+                  </li>
+                </ul>
+                <h6 class="card-title">Description</h6>
+                <div class="card-text col-12 text-truncate">{{description}}</div>
+                <!-- Show details opens in new tab -->
+                <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}"
+                  class="btn btn-primary btn-sm float-sm-right">Show Details</a>
+
+                {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
               </div>
             </div>
           </div>
+          {{/each}}
 
-        {{/each}}
 
-    {{else}}
-      {{#equal parks.length 0 }}
-        <section>
-          <div class="h-50 d-flex justify-content-center align-items-center">
-            <h6>No records found for current search, try a different category or search keyword</h6>
-          </div>
-        </section>
-      {{/equal}}
+        </div>
+      </div>
+    </section>
+
 
     {{/if}}
-  </section>
+  </main>
 
-  <!-- Pagination -->
-  <section>
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="layui-box layui-laypage layui-laypage-molv" id="layui-laypage-1" >
-          <a href="javascript:" class="layui-laypage-first" data-page="0">First Page</a>
-          <a href="javascript:" class="layui-laypage-pre" data-page="2">Previous</a>
-          <a href="javascript:" class="layui-laypage-next" data-page="2">Next</a>
-          <a href="javascript:" class="layui-laypage-last" data-page="2">Last Page</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer-area p-0">
-    <div class="container">
-      <div class="row">
-        <div class="footer-bottom align-items-center text-center w-100">
-          Copyright &copy; CSC-648/848 Team 04
-        </div>
-      </div>
-  </footer>
+  {{> footer}}
 
 
-  <!-- Login Modal -->
-  <div class=" modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Log In</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
-
-              <input id="username" type="email" class="form-control" placeholder="Email *" name="email" required>
-            </div>
-            <div class="form-group">
-
-              <input id="password" type="password" class="form-control" placeholder="Password *" name="password" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Log In</button>
-          <p class="mt-2 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#resetPasswordModal" class=" text-primary">Reset/Forgot Password?</a></p>
-          <p class="mt-1 login-form__footer"><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#SignUpModal" class=" text-primary">New User? Sign Up</a></p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Reset Password Modal -->
-  <div class=" modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Reset/Forgot Password ?</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input">
-            <div class="form-group">
-              <input id="username" type="email" class="form-control" placeholder="Email" name="email" required>
-            </div>
-          </form>
-          <button class="btn login-form__btn submit w-100" id="login_submit">Reset Password</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- SignUp Modal -->
-  <div class="modal fade" id="SignUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Sign Up</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="login-input" action="/register" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" name="Name" placeholder="Name *" required>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" name="Email" placeholder="Email *" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password" placeholder="Password *" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="Password2" placeholder="Re-type Password *" required>
-            </div>
-            <button class="btn login-form__btn submit w-100" id="register_submit" type="submit">Sign Up</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Show Details Popup -->
-  <div class=" modal fade" id="showDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Show Details</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- End header MEnu Area -->
-  <script src="js/jquery-2.2.4.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/stellar.js"></script>
-  <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/theme.js"></script>
 </body>
 
 </html>
