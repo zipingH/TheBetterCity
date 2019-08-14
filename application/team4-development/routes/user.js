@@ -24,7 +24,8 @@ router.post('/login' , (req, res) =>{
   console.log("--Inside login --");
   var email = req.body.email;
     var password = req.body.password;
-      console.log('Email:' + email +'Password:' + password );
+    var path=req.body.currentURL;
+      console.log('Email:' + email +'Password:' + password + path);
     const queryString = "select * from user where email = ?";
 
     db.query(queryString, [email], (err, results) => {
@@ -37,14 +38,14 @@ router.post('/login' , (req, res) =>{
             const userDetail = results[0];
             if (!userDetail) {
                 console.log('Email not found in DB');
-              res.redirect('/');
+              res.redirect('path');
             }
             //compares hashed password
             else if (email == userDetail.email){
               bcrypt.compare(password, userDetail.password, function(err, result) {
                 if (result == true) {
                   req.session.user = userDetail;
-                  res.redirect('/');
+                  res.redirect(path);
                     console.log("--login successful  --");
                     console.log('session:' + req.session);
                     console.log('  req.session.user :' + req.session.user);
@@ -55,7 +56,7 @@ router.post('/login' , (req, res) =>{
                   console.log('Password doesnt match ');
                   console.log(userDetail.password);
                   console.log(password);
-                  res.redirect('/');
+                  res.redirect('path');
                 }
               });
           }

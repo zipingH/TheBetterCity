@@ -208,17 +208,14 @@
         </section>
       {{/equal}}
 
-      <section class="d-flex justify-content-center">
-        <h5>Recent Issues</h5>
-      </section>
-
-
 
       <!--  when nothing is serached or when no search result is found  -->
       <section>
+          <h5 class="d-flex justify-content-center">Recent Issues</h5>
         <div class="container">
           <div class="row">
             {{#each recentIssues}}
+
               <div class="col-lg-6 col-sm-12" style="margin-top:15px">
                 <div class="card">
                   <div class="card-header">
@@ -235,7 +232,7 @@
                     </ul>
                     <h6 class="card-title">Description</h6>
                     <div class="card-text col-12 text-truncate">{{description}}</div>
-                    <!-- Show details modal in 'show' partials -->
+                    <!-- Show details opens in new tab -->
                     <a target="_blank" rel="noopener noreferrer" href="/showDetail?issue_id={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>
 
                     {{!--  <a href="/showDetail?issueId={{issue_id}}" class="btn btn-primary btn-sm float-sm-right">Show Details</a>--}}
@@ -243,9 +240,13 @@
                 </div>
               </div>
             {{/each}}
-          </div>
+
+
+            </div>
         </div>
       </section>
+
+
     {{/if}}
   </main>
 
