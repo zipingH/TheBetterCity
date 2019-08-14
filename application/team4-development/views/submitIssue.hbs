@@ -56,7 +56,7 @@
   <script>
     var loggedInId = '';
     var loggedInName = '';
-    $(document).ready(function () {
+    $(document).ready(function() {
       loggedInId = '{{session.user.id}}';
       loggedInName = '{{session.user.name}}';
       $('#logout').hide();
@@ -71,8 +71,14 @@
 
       }
 
+      $('#locationDropdown').on('change', function(value) {
+        if(this.value == 'Other') {
+          $('#otherLocation').show();
+        } else {
+          $('#otherLocation').hide();
+        }
+      });
     });
-
   </script>
 
 
@@ -103,7 +109,7 @@
             </ul>
           </div>
         </div>
-      </nav>
+        </nav>
     </div>
   </header>
 
@@ -127,7 +133,7 @@
 
           <div class="form-group">
             <label for="location">location <font color="red">*</font></label>
-            <select class="form-control" name="location" required>
+            <select class="form-control" name="location" required id="locationDropdown">
               <option value="" selected="selected">Select a Park or Location</option>
               <option name="Golden Gate Park" value="Golden Gate Park">Golden Gate Park</option>
               <option name="Mission Dolores Park" value="Mission Dolores Park">Mission Dolores Park</option>
@@ -135,6 +141,11 @@
               <option name="Pioneer Park" value="Pioneer Park">Pioneer Park</option>
               <option name="Other" value="Other">Other</option>
             </select>
+          </div>
+
+          <div class="form-group" id="otherLocation" style="display:none">
+            <label for="location"></label>
+            <input class="form-control" type="text" name="location" value="" placeholder="Specify other location">
           </div>
 
           <div class="form-group">
