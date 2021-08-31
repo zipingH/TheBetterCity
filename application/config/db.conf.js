@@ -5,10 +5,11 @@
 const mysql = require('mysql')
 
 const db = mysql.createConnection({
-    host: 'csc648.crgiewgyesqb.us-east-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'csc648_team4',
+    host: 'localhost',
+    user: 'root',
+    password: 'zipingh777',
     database: 'csc648_db',
+    port: 3306,
     multipleStatements: true
 });
 

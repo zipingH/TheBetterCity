@@ -81,7 +81,7 @@ res.redirect(path);
     console.log('email:' +req.body.email  + path);
     //hash password
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      const queryString = "INSERT INTO user (name, email, password, role) VALUES (?, ?, ?, 'user')";
+      const queryString = "INSERT INTO user (name, email, password, id, role) VALUES (?, ?, ?, @id,'user')";
       console.log('password:' +hash);
       db.query(queryString, [req.body.name, req.body.email, hash], (err, results) => {
         if (err) {

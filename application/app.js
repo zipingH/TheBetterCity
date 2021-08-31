@@ -48,6 +48,8 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
+/*routes*/
+
 //create connection to get issue
 const getIssue = require('./routes/getIssue.js');
 app.use(getIssue);
@@ -67,6 +69,12 @@ app.use(user);
 const showDetailRoute = require('./routes/showDetailRoute.js');
 app.use(showDetailRoute);
 
-app.listen(80, () => {
-  console.log("Server is up and listening on 80...")
+
+// app.get('/', function (req, res) {
+//   res.render('./Home.hbs', {});
+// });
+
+const port = 5500;
+app.listen(port, () =>{
+  console.log("Server is up listening on "+ port +" ...")
 })

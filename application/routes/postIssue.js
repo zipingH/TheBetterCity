@@ -42,7 +42,7 @@ const upload = multer({
     },
     fileFilter: function (req, file, callback) {
         var ext = path.extname(file.originalname);
-        if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg' && ext !== '.PNG'&& ext !== '.JPG') {
             return callback(new Error('Only images are allowed'))
         }
         callback(null, true)
@@ -59,7 +59,7 @@ router.post('/postIssue', upload.single('photo'), (req, res) => {
     //const photoPath = "../IssueImages/";
     var photo;
     if (!req.file) {
-        photo = '';
+        photo = 'no-image.jpg';
         console.log('No Photo added');
     } else {
         photo = req.file.filename;
