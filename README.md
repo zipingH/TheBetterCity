@@ -12,6 +12,8 @@ In this application, user will be able to:<br/>
 • Search through the reported issues <br/>
 • Filter them all by categories, and status <br/>
 
+# Screenshots
+![Screenshots](https://github.com/zipingH/TheBetterCity/blob/master/Milestones/M5/Product%20Screen%20Shots.pdf)
 
 
 
